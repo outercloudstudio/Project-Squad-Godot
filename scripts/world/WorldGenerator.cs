@@ -178,6 +178,8 @@ public partial class WorldGenerator : Node, NetworkPointUser {
 
                 int existingIndex = edgeFieldLocations.IndexOf(location);
 
+                if (existingIndex == -1) continue;
+
                 if (edgeFieldDistances[existingIndex] != roomPlacement.RoomLayout.EdgeFieldDistance[index]) continue;
 
                 roomPlacement.EdgeFieldLocations.Add(location);

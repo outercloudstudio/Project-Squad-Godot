@@ -88,7 +88,7 @@ public class LoadableRoom {
         }
 
         for (int index = 0; index < RoomPlacement.EdgeFieldLocations.Count; index++) {
-            if (RoomPlacement.EdgeFieldDistances[index] < 4) continue;
+            if (RoomPlacement.EdgeFieldDistances[index] < 5) continue;
 
             _world.RoofsTileMapLayer.SetCell((Vector2I)RoomPlacement.EdgeFieldLocations[index], 0, new Vector2I(5, 6));
         }

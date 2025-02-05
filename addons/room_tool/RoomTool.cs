@@ -420,7 +420,7 @@ public partial class RoomTool : EditorPlugin {
 
             int neighborDistance = distance + 1;
 
-            if (distance >= 20) continue;
+            if (distance >= 30) continue;
 
             foreach (Vector2 offset in offsets) {
                 if (!LocationIsValidEdge(location + offset, roomLayout)) continue;
