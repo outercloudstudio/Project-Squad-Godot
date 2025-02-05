@@ -34,7 +34,11 @@ public partial class RoomLayoutGizmo : Node2D {
         }
 
         for(int index = 0; index < EdgeLocations.Count; index++) {
-            DrawRect(new Rect2(EdgeLocations[index] * 16f, 16f, 16f), new Color(0, 1, 0, 0.8f * (1f - EdgeDistances[index] / 20f)));
+            if(EdgeDistances[index] == -1) {
+                DrawRect(new Rect2(EdgeLocations[index] * 16f, 16f, 16f), new Color(1, 0, 0, 0.2f));
+            } else {
+                DrawRect(new Rect2(EdgeLocations[index] * 16f, 16f, 16f), new Color(0, 1, 0, 0.3f * (1f - EdgeDistances[index] / 20f)));
+            }
         }
     }
 }

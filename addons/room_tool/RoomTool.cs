@@ -330,11 +330,6 @@ public partial class RoomTool : EditorPlugin {
     }
 
     private bool LocationTouchingWalls(Vector2 location, RoomLayout roomLayout) {
-        if (location.X < roomLayout.TopLeftBound.X) return true;
-        if (location.Y < roomLayout.TopLeftBound.Y) return true;
-        if (location.X >= roomLayout.BottomRightBound.X) return true;
-        if (location.Y >= roomLayout.BottomRightBound.Y) return true;
-
         List<Vector2> offsets = new List<Vector2>() {
             Vector2.Up + Vector2.Left, Vector2.Up, Vector2.Up + Vector2.Right,
             Vector2.Left, Vector2.Right,
@@ -342,6 +337,11 @@ public partial class RoomTool : EditorPlugin {
         };
 
         foreach (Vector2 offset in offsets) {
+            if ((location + offset).X < roomLayout.TopLeftBound.X) return true;
+            if ((location + offset).Y < roomLayout.TopLeftBound.Y) return true;
+            if ((location + offset).X >= roomLayout.BottomRightBound.X) return true;
+            if ((location + offset).Y >= roomLayout.BottomRightBound.Y) return true;
+
             if (roomLayout.Walls.Contains(location + offset)) return true;
         }
 
@@ -406,6 +406,11 @@ public partial class RoomTool : EditorPlugin {
 
         List<Vector2> edgeLocations = new List<Vector2>();
         List<int> edgeDistances = new List<int>();
+
+        foreach(Vector2 location in inRoomLocations) {
+            edgeLocations.Add(location);
+            edgeDistances.Add(-1);
+        }
 
         while(floodQueue.Count > 0) {
             Vector2 location = floodQueue[0];
