@@ -57,14 +57,6 @@ public partial class World : Node2D, NetworkPointUser {
 
         foreach (WorldGenerator.RoomPlacement roomPlacement in roomPlacements) {
             Me._unloadedRooms.Add(new LoadableRoom(roomPlacement, Me, Me._activeBiome));
-
-            if (roomPlacement is WorldGenerator.BranchedRoomPlacement branchedRoomPlacement) {
-                foreach (Stack<WorldGenerator.RoomPlacement> branches in branchedRoomPlacement.BranchRoomPlacements) {
-                    foreach (WorldGenerator.RoomPlacement branchRoomPlacement in branches) {
-                        Me._unloadedRooms.Add(new LoadableRoom(branchRoomPlacement, Me, Me._activeBiome));
-                    }
-                }
-            }
         }
 
         Me.Load(Vector2.Zero);

@@ -400,19 +400,19 @@ public partial class RoomTool : EditorPlugin {
         List<Vector2> floodQueue = inRoomLocations.Where(location => LocationTouchingWalls(location, roomLayout)).ToList();
         List<int> floodQueueDistances = new List<int>();
 
-        foreach(Vector2 location in floodQueue) { 
+        foreach (Vector2 location in floodQueue) {
             floodQueueDistances.Add(0);
         }
 
         List<Vector2> edgeLocations = new List<Vector2>();
         List<int> edgeDistances = new List<int>();
 
-        foreach(Vector2 location in inRoomLocations) {
+        foreach (Vector2 location in inRoomLocations) {
             edgeLocations.Add(location);
             edgeDistances.Add(-1);
         }
 
-        while(floodQueue.Count > 0) {
+        while (floodQueue.Count > 0) {
             Vector2 location = floodQueue[0];
             floodQueue.RemoveAt(0);
             int distance = floodQueueDistances[0];
@@ -420,7 +420,7 @@ public partial class RoomTool : EditorPlugin {
 
             int neighborDistance = distance + 1;
 
-            if(distance >= 20) continue;
+            if (distance >= 20) continue;
 
             foreach (Vector2 offset in offsets) {
                 if (!LocationIsValidEdge(location + offset, roomLayout)) continue;
@@ -435,7 +435,7 @@ public partial class RoomTool : EditorPlugin {
 
                 edgeLocations.Add(location + offset);
                 edgeDistances.Add(neighborDistance);
-                
+
                 floodQueue.Add(location + offset);
                 floodQueueDistances.Add(neighborDistance);
             }

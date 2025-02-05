@@ -87,6 +87,12 @@ public class LoadableRoom {
             decoration.GlobalPosition = decorationPlacement.Location * 16 + Vector2.One * 8f;
         }
 
+        for (int index = 0; index < RoomPlacement.EdgeFieldLocations.Count; index++) {
+            if (RoomPlacement.EdgeFieldDistances[index] < 4) continue;
+
+            _world.RoofsTileMapLayer.SetCell((Vector2I)RoomPlacement.EdgeFieldLocations[index], 0, new Vector2I(5, 6));
+        }
+
         if (RoomPlacement.Type == WorldGenerator.RoomPlacement.RoomType.Spawn) return;
 
         PackedScene barrierScene = ResourceLoader.Load<PackedScene>("res://scenes/rooms/barrier.tscn");

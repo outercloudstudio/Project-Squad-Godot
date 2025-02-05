@@ -1,5 +1,6 @@
 using Godot;
 using Networking;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -18,6 +19,8 @@ public partial class WorldGenerator : Node, NetworkPointUser {
         public RoomType Type = RoomType.None;
         public RoomLayout.Connection EntranceConnection;
         public List<DecorationPlacement> Decorations = new List<DecorationPlacement>();
+        public List<Vector2> EdgeFieldLocations = new List<Vector2>();
+        public List<int> EdgeFieldDistances = new List<int>();
 
         public virtual bool Intersects(RoomPlacement otherRoom) {
             if (otherRoom.GetTopLeftBound().X >= GetTopLeftBound().X && otherRoom.GetTopLeftBound().X < GetBottomRightBound().X && otherRoom.GetTopLeftBound().Y >= GetTopLeftBound().Y && otherRoom.GetTopLeftBound().Y < GetBottomRightBound().Y) return true;
@@ -69,7 +72,7 @@ public partial class WorldGenerator : Node, NetworkPointUser {
         }
     }
 
-    public class BranchedRoomPlacement : RoomPlacement {
+    private class BranchedRoomPlacement : RoomPlacement {
         public List<Stack<RoomPlacement>> BranchRoomPlacements;
 
         public override bool Intersects(RoomPlacement otherRoom) {
@@ -133,7 +136,59 @@ public partial class WorldGenerator : Node, NetworkPointUser {
             GenerateDecorations(roomPlacement, biome);
         }
 
-        return placedRooms;
+        Stack<RoomPlacement> flattenedRoomPlacements = new Stack<RoomPlacement>();
+
+        foreach (RoomPlacement roomPlacement in placedRooms) {
+            flattenedRoomPlacements.Push(roomPlacement);
+
+            if (roomPlacement is BranchedRoomPlacement branchedRoomPlacement) {
+                foreach (Stack<RoomPlacement> branches in branchedRoomPlacement.BranchRoomPlacements) {
+                    foreach (RoomPlacement branchRoomPlacement in branches) {
+                        flattenedRoomPlacements.Push(branchRoomPlacement);
+                    }
+                }
+            }
+        }
+
+        List<Vector2> edgeFieldLocations = new List<Vector2>();
+        List<int> edgeFieldDistances = new List<int>();
+
+        foreach (RoomPlacement roomPlacement in placedRooms) {
+            if (roomPlacement.RoomLayout.EdgeFieldPosition == null) continue;
+
+            for (int index = 0; index < roomPlacement.RoomLayout.EdgeFieldPosition.Length; index++) {
+                Vector2 location = roomPlacement.RoomLayout.EdgeFieldPosition[index] + roomPlacement.Location;
+
+                int existingIndex = edgeFieldLocations.IndexOf(location);
+
+                if (existingIndex == -1) {
+                    edgeFieldLocations.Add(location);
+                    edgeFieldDistances.Add(roomPlacement.RoomLayout.EdgeFieldDistance[index]);
+                } else {
+                    edgeFieldDistances[existingIndex] = Math.Min(roomPlacement.RoomLayout.EdgeFieldDistance[index], edgeFieldDistances[existingIndex]);
+                }
+            }
+        }
+
+        foreach (RoomPlacement roomPlacement in placedRooms) {
+            if (roomPlacement.RoomLayout.EdgeFieldPosition == null) continue;
+
+            for (int index = 0; index < roomPlacement.RoomLayout.EdgeFieldPosition.Length; index++) {
+                Vector2 location = roomPlacement.RoomLayout.EdgeFieldPosition[index] + roomPlacement.Location;
+
+                int existingIndex = edgeFieldLocations.IndexOf(location);
+
+                if (edgeFieldDistances[existingIndex] != roomPlacement.RoomLayout.EdgeFieldDistance[index]) continue;
+
+                roomPlacement.EdgeFieldLocations.Add(location);
+                roomPlacement.EdgeFieldDistances.Add(edgeFieldDistances[existingIndex]);
+
+                edgeFieldLocations.RemoveAt(existingIndex);
+                edgeFieldDistances.RemoveAt(existingIndex);
+            }
+        }
+
+        return flattenedRoomPlacements;
     }
 
     private bool TryPlaceRooms(Biome biome, Stack<RoomPlacement> placedRooms, RoomLayout.Connection lastConnection, int roomsToPlace, int size, int branches) {
