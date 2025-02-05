@@ -20,7 +20,7 @@ public partial class Camera : Camera2D {
 
         float scale = Mathf.Ceil(Mathf.Max(scales.X, scales.Y));
 
-        Zoom = Vector2.One * scale * 0.1f;
+        Zoom = Vector2.One * scale;
 
         _shakeTimer -= (float)delta;
 
