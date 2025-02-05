@@ -66,7 +66,7 @@ public partial class World : Node2D, NetworkPointUser {
         List<LoadableRoom> loadedRooms = _loadedRooms.Keys.ToList();
 
         foreach (LoadableRoom room in loadedRooms) {
-            if (location.DistanceTo(room.RoomPlacement.Location * 16) > 600) continue;
+            // if (location.DistanceTo(room.RoomPlacement.Location * 16) > 600) continue;
 
             _loadedRooms[room] = 10;
         }
@@ -74,7 +74,7 @@ public partial class World : Node2D, NetworkPointUser {
         for (int index = 0; index < _unloadedRooms.Count; index++) {
             LoadableRoom loadableRoom = _unloadedRooms[index];
 
-            if (location.DistanceTo(loadableRoom.RoomPlacement.Location * 16) > 600) continue;
+            // if (location.DistanceTo(loadableRoom.RoomPlacement.Location * 16) > 600) continue;
 
             _unloadedRooms.RemoveAt(index);
             index--;

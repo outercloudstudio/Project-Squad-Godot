@@ -153,7 +153,7 @@ public partial class WorldGenerator : Node, NetworkPointUser {
         List<Vector2> edgeFieldLocations = new List<Vector2>();
         List<int> edgeFieldDistances = new List<int>();
 
-        foreach (RoomPlacement roomPlacement in placedRooms) {
+        foreach (RoomPlacement roomPlacement in flattenedRoomPlacements) {
             if (roomPlacement.RoomLayout.EdgeFieldPosition == null) continue;
 
             for (int index = 0; index < roomPlacement.RoomLayout.EdgeFieldPosition.Length; index++) {
@@ -170,7 +170,7 @@ public partial class WorldGenerator : Node, NetworkPointUser {
             }
         }
 
-        foreach (RoomPlacement roomPlacement in placedRooms) {
+        foreach (RoomPlacement roomPlacement in flattenedRoomPlacements) {
             if (roomPlacement.RoomLayout.EdgeFieldPosition == null) continue;
 
             for (int index = 0; index < roomPlacement.RoomLayout.EdgeFieldPosition.Length; index++) {
