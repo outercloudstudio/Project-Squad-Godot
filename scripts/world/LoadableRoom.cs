@@ -87,10 +87,17 @@ public class LoadableRoom {
             decoration.GlobalPosition = decorationPlacement.Location * 16 + Vector2.One * 8f;
         }
 
-        for (int index = 0; index < RoomPlacement.EdgeFieldLocations.Count; index++) {
-            if (RoomPlacement.EdgeFieldDistances[index] < 10) continue;
+        PackedScene edgeTreeScene = AssetManager.GetScene("decoration.golden_grove.edge.tree");
 
-            _world.RoofsTileMapLayer.SetCell((Vector2I)RoomPlacement.EdgeFieldLocations[index], 0, new Vector2I(5, 6));
+        for (int index = 0; index < RoomPlacement.EdgeFieldLocations.Count; index++) {
+            if (RoomPlacement.EdgeFieldDistances[index] < 3) continue;
+
+            if (GD.Randf() > 0.1) continue;
+
+            Node2D tree = edgeTreeScene.Instantiate<Node2D>();
+            _room.AddChild(tree);
+
+            tree.GlobalPosition = RoomPlacement.EdgeFieldLocations[index] * 16;
         }
 
         if (RoomPlacement.Type == WorldGenerator.RoomPlacement.RoomType.Spawn) return;
