@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using Networking;
 using System;
 using System.Collections.Generic;
@@ -150,8 +151,7 @@ public partial class WorldGenerator : Node, NetworkPointUser {
             }
         }
 
-        List<Vector2> edgeFieldLocations = new List<Vector2>();
-        List<int> edgeFieldDistances = new List<int>();
+        System.Collections.Generic.Dictionary<Vector2, int> edgeField = new System.Collections.Generic.Dictionary<Vector2, int>();
 
         foreach (RoomPlacement roomPlacement in flattenedRoomPlacements) {
             if (roomPlacement.RoomLayout.EdgeFieldPosition == null) continue;
@@ -159,13 +159,10 @@ public partial class WorldGenerator : Node, NetworkPointUser {
             for (int index = 0; index < roomPlacement.RoomLayout.EdgeFieldPosition.Length; index++) {
                 Vector2 location = roomPlacement.RoomLayout.EdgeFieldPosition[index] + roomPlacement.Location;
 
-                int existingIndex = edgeFieldLocations.IndexOf(location);
-
-                if (existingIndex == -1) {
-                    edgeFieldLocations.Add(location);
-                    edgeFieldDistances.Add(roomPlacement.RoomLayout.EdgeFieldDistance[index]);
+                if (edgeField.ContainsKey(location)) {
+                    edgeField[location] = Math.Min(roomPlacement.RoomLayout.EdgeFieldDistance[index], edgeField[location]);
                 } else {
-                    edgeFieldDistances[existingIndex] = Math.Min(roomPlacement.RoomLayout.EdgeFieldDistance[index], edgeFieldDistances[existingIndex]);
+                    edgeField.Add(location, roomPlacement.RoomLayout.EdgeFieldDistance[index]);
                 }
             }
         }
@@ -176,17 +173,14 @@ public partial class WorldGenerator : Node, NetworkPointUser {
             for (int index = 0; index < roomPlacement.RoomLayout.EdgeFieldPosition.Length; index++) {
                 Vector2 location = roomPlacement.RoomLayout.EdgeFieldPosition[index] + roomPlacement.Location;
 
-                int existingIndex = edgeFieldLocations.IndexOf(location);
+                if (!edgeField.ContainsKey(location)) continue;
 
-                if (existingIndex == -1) continue;
-
-                if (edgeFieldDistances[existingIndex] != roomPlacement.RoomLayout.EdgeFieldDistance[index]) continue;
+                if (edgeField[location] != roomPlacement.RoomLayout.EdgeFieldDistance[index]) continue;
 
                 roomPlacement.EdgeFieldLocations.Add(location);
-                roomPlacement.EdgeFieldDistances.Add(edgeFieldDistances[existingIndex]);
+                roomPlacement.EdgeFieldDistances.Add(edgeField[location]);
 
-                edgeFieldLocations.RemoveAt(existingIndex);
-                edgeFieldDistances.RemoveAt(existingIndex);
+                edgeField.Remove(location);
             }
         }
 
