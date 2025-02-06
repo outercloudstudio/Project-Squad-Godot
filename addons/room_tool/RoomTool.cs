@@ -349,6 +349,8 @@ public partial class RoomTool : EditorPlugin {
     }
 
     private bool LocationIsValidEdge(Vector2 location, RoomLayout roomLayout) {
+        if (!new Rect2(roomLayout.TopLeftBound - Vector2.One * 15, roomLayout.BottomRightBound - roomLayout.TopLeftBound + Vector2.One * 30).HasPoint(location)) return false;
+
         if (location.X < roomLayout.TopLeftBound.X) return true;
         if (location.Y < roomLayout.TopLeftBound.Y) return true;
         if (location.X >= roomLayout.BottomRightBound.X) return true;
