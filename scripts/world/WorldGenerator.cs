@@ -133,58 +133,19 @@ public partial class WorldGenerator : Node, NetworkPointUser {
 
         if (!result) return Generate(seed + 1, biome);
 
+        placedRooms = FlattenPlacedRooms(placedRooms);
+
+        ResolveEdgeFields(placedRooms);
+
         foreach (RoomPlacement roomPlacement in placedRooms) {
             GenerateDecorations(roomPlacement, biome);
         }
 
-        Stack<RoomPlacement> flattenedRoomPlacements = new Stack<RoomPlacement>();
-
         foreach (RoomPlacement roomPlacement in placedRooms) {
-            flattenedRoomPlacements.Push(roomPlacement);
-
-            if (roomPlacement is BranchedRoomPlacement branchedRoomPlacement) {
-                foreach (Stack<RoomPlacement> branches in branchedRoomPlacement.BranchRoomPlacements) {
-                    foreach (RoomPlacement branchRoomPlacement in branches) {
-                        flattenedRoomPlacements.Push(branchRoomPlacement);
-                    }
-                }
-            }
+            GenerateDecorations(roomPlacement, biome);
         }
 
-        System.Collections.Generic.Dictionary<Vector2, int> edgeField = new System.Collections.Generic.Dictionary<Vector2, int>();
-
-        foreach (RoomPlacement roomPlacement in flattenedRoomPlacements) {
-            if (roomPlacement.RoomLayout.EdgeFieldPosition == null) continue;
-
-            for (int index = 0; index < roomPlacement.RoomLayout.EdgeFieldPosition.Length; index++) {
-                Vector2 location = roomPlacement.RoomLayout.EdgeFieldPosition[index] + roomPlacement.Location;
-
-                if (edgeField.ContainsKey(location)) {
-                    edgeField[location] = Math.Min(roomPlacement.RoomLayout.EdgeFieldDistance[index], edgeField[location]);
-                } else {
-                    edgeField.Add(location, roomPlacement.RoomLayout.EdgeFieldDistance[index]);
-                }
-            }
-        }
-
-        foreach (RoomPlacement roomPlacement in flattenedRoomPlacements) {
-            if (roomPlacement.RoomLayout.EdgeFieldPosition == null) continue;
-
-            for (int index = 0; index < roomPlacement.RoomLayout.EdgeFieldPosition.Length; index++) {
-                Vector2 location = roomPlacement.RoomLayout.EdgeFieldPosition[index] + roomPlacement.Location;
-
-                if (!edgeField.ContainsKey(location)) continue;
-
-                if (edgeField[location] != roomPlacement.RoomLayout.EdgeFieldDistance[index]) continue;
-
-                roomPlacement.EdgeFieldLocations.Add(location);
-                roomPlacement.EdgeFieldDistances.Add(edgeField[location]);
-
-                edgeField.Remove(location);
-            }
-        }
-
-        return flattenedRoomPlacements;
+        return placedRooms;
     }
 
     private bool TryPlaceRooms(Biome biome, Stack<RoomPlacement> placedRooms, RoomLayout.Connection lastConnection, int roomsToPlace, int size, int branches) {
@@ -463,5 +424,58 @@ public partial class WorldGenerator : Node, NetworkPointUser {
         }
 
         roomPlacement.Decorations = decorations;
+    }
+
+    private void ResolveEdgeFields(Stack<RoomPlacement> placedRooms) {
+        System.Collections.Generic.Dictionary<Vector2, int> edgeField = new System.Collections.Generic.Dictionary<Vector2, int>();
+
+        foreach (RoomPlacement roomPlacement in placedRooms) {
+            if (roomPlacement.RoomLayout.EdgeFieldPosition == null) continue;
+
+            for (int index = 0; index < roomPlacement.RoomLayout.EdgeFieldPosition.Length; index++) {
+                Vector2 location = roomPlacement.RoomLayout.EdgeFieldPosition[index] + roomPlacement.Location;
+
+                if (edgeField.ContainsKey(location)) {
+                    edgeField[location] = Math.Min(roomPlacement.RoomLayout.EdgeFieldDistance[index], edgeField[location]);
+                } else {
+                    edgeField.Add(location, roomPlacement.RoomLayout.EdgeFieldDistance[index]);
+                }
+            }
+        }
+
+        foreach (RoomPlacement roomPlacement in placedRooms) {
+            if (roomPlacement.RoomLayout.EdgeFieldPosition == null) continue;
+
+            for (int index = 0; index < roomPlacement.RoomLayout.EdgeFieldPosition.Length; index++) {
+                Vector2 location = roomPlacement.RoomLayout.EdgeFieldPosition[index] + roomPlacement.Location;
+
+                if (!edgeField.ContainsKey(location)) continue;
+
+                if (edgeField[location] != roomPlacement.RoomLayout.EdgeFieldDistance[index]) continue;
+
+                roomPlacement.EdgeFieldLocations.Add(location);
+                roomPlacement.EdgeFieldDistances.Add(edgeField[location]);
+
+                edgeField.Remove(location);
+            }
+        }
+    }
+
+    private Stack<RoomPlacement> FlattenPlacedRooms(Stack<RoomPlacement> placedRooms) {
+        Stack<RoomPlacement> flattenedRoomPlacements = new Stack<RoomPlacement>();
+
+        foreach (RoomPlacement roomPlacement in placedRooms) {
+            flattenedRoomPlacements.Push(roomPlacement);
+
+            if (roomPlacement is BranchedRoomPlacement branchedRoomPlacement) {
+                foreach (Stack<RoomPlacement> branches in branchedRoomPlacement.BranchRoomPlacements) {
+                    foreach (RoomPlacement branchRoomPlacement in branches) {
+                        flattenedRoomPlacements.Push(branchRoomPlacement);
+                    }
+                }
+            }
+        }
+
+        return flattenedRoomPlacements;
     }
 }
