@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public class Assets {
@@ -162,6 +163,43 @@ public class Assets {
                             placements.Add(new WorldGenerator.DecorationPlacement {
                                 Location = location,
                                 Scene = grasTufts[random.RandiRange(0, grasTufts.Length -1)],
+                            });
+                        }
+
+                        return placements;
+                    }
+                }
+            },
+            EdgeDecorations = new EdgeDecoration[] {
+                new EdgeDecoration {
+                    Generate = (roomPlacement, occupiedDecorationLocations) => {
+                        RandomNumberGenerator random = new RandomNumberGenerator();
+
+                        PackedScene treeScene = AssetManager.GetScene("decoration.golden_grove.edge.tree");
+
+                        List<WorldGenerator.DecorationPlacement> placements = new List<WorldGenerator.DecorationPlacement>();
+
+                        for(int index = 0; index < roomPlacement.EdgeFieldLocations.Count; index++) {
+                            bool shouldPlace = random.Randf() < 0.2f;
+
+                            if(!shouldPlace) continue;
+
+                            Vector2I location = (Vector2I)roomPlacement.EdgeFieldLocations[index];
+                            int distance = roomPlacement.EdgeFieldDistances[index];
+
+                            if(distance < 3) continue;
+
+                            Vector2I[] occupyingCells = new Vector2I[] {location, location + new Vector2I(1, 0), location + new Vector2I(0, 1), location + new Vector2I(1, 1) };
+
+                            if(occupyingCells.Any(cell => occupiedDecorationLocations.Contains(cell))) continue;
+
+                            foreach(Vector2I cell in occupyingCells) {
+                                occupiedDecorationLocations.Add(cell);
+                            }
+
+                            placements.Add(new WorldGenerator.DecorationPlacement {
+                                Location = location,
+                                Scene = treeScene
                             });
                         }
 

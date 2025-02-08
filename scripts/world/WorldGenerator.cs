@@ -141,10 +141,6 @@ public partial class WorldGenerator : Node, NetworkPointUser {
             GenerateDecorations(roomPlacement, biome);
         }
 
-        foreach (RoomPlacement roomPlacement in placedRooms) {
-            GenerateDecorations(roomPlacement, biome);
-        }
-
         return placedRooms;
     }
 
@@ -421,6 +417,12 @@ public partial class WorldGenerator : Node, NetworkPointUser {
 
         foreach (Decoration decoration in biome.Decorations) {
             decorations.AddRange(decoration.Generate(roomPlacement, openDecorationLocations));
+        }
+
+        List<Vector2I> occupiedDecorationLocations = new List<Vector2I>();
+
+        foreach (EdgeDecoration decoration in biome.EdgeDecorations) {
+            decorations.AddRange(decoration.Generate(roomPlacement, occupiedDecorationLocations));
         }
 
         roomPlacement.Decorations = decorations;
