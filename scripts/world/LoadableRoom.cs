@@ -14,7 +14,7 @@ public class LoadableRoom {
     private float _pointsPerRound;
     private float _nextRoundTimer;
     private Node2D _room;
-    private List<Node2D> _barriers = new List<Node2D>();
+    private List<Barrier> _barriers = new List<Barrier>();
     private int _spawnedEnemies = 0;
 
 
@@ -89,25 +89,19 @@ public class LoadableRoom {
 
         if (RoomPlacement.Type == WorldGenerator.RoomPlacement.RoomType.Spawn) return;
 
-        PackedScene barrierScene = ResourceLoader.Load<PackedScene>("res://scenes/rooms/barrier.tscn");
 
         if (Cleared) return;
 
         foreach (RoomLayout.Connection connection in RoomPlacement.RoomLayout.GetConnections()) {
             if (connection.Equals(RoomPlacement.EntranceConnection)) continue;
 
-            Node2D barrier = barrierScene.Instantiate<Node2D>();
+            PackedScene barrierScene = _biome.HorizontalBarrier;
+            if (connection.Direction == Vector2.Right || connection.Direction == Vector2.Left) barrierScene = _biome.VerticalBarrier;
+
+            Barrier barrier = barrierScene.Instantiate<Barrier>();
             _barriers.Add(barrier);
 
             _room.AddChild(barrier);
-
-            RectangleShape2D shape = barrier.GetNode<CollisionShape2D>("CollisionShape2D").Shape as RectangleShape2D;
-
-            if (connection.Direction == Vector2.Right || connection.Direction == Vector2.Left) {
-                shape.Size = new Vector2(32, 16 * 8);
-            } else {
-                shape.Size = new Vector2(16 * 8, 32);
-            }
 
             barrier.Position = connection.Location * 16;
         }
@@ -133,7 +127,7 @@ public class LoadableRoom {
 
         _activated = false;
         _rounds = new List<List<int>>();
-        _barriers = new List<Node2D>();
+        _barriers = new List<Barrier>();
         _spawnedEnemies = 0;
     }
 
@@ -193,8 +187,8 @@ public class LoadableRoom {
     private void Complete() {
         Cleared = true;
 
-        foreach (Node2D barrier in _barriers) {
-            barrier.QueueFree();
+        foreach (Barrier barrier in _barriers) {
+            barrier.Deactivate();
         }
 
         Game.IncreaseDifficulty();

@@ -16,6 +16,8 @@ public partial class Biome {
     public SmartTileset Tileset;
     public Decoration[] Decorations = new Decoration[0];
     public EdgeDecoration[] EdgeDecorations = new EdgeDecoration[0];
+    public PackedScene HorizontalBarrier;
+    public PackedScene VerticalBarrier;
 
     public List<RoomLayout> RoomLayouts = new List<RoomLayout>();
     public List<RoomLayout> SpawnRoomLayouts = new List<RoomLayout>();

@@ -1,19 +1,28 @@
+using System.Collections.Generic;
 using Godot;
 
 public partial class Barrier : StaticBody2D {
-	[Export] public Destructable[] Destructables = new Destructable[0];
+	private List<Destructable> _destructables = new List<Destructable>();
+
+	public override void _Ready() {
+		Node decorations = GetNode("Decorations");
+
+		foreach (Node node in decorations.GetChildren()) {
+			if (!(node is Destructable destructable)) continue;
+
+			_destructables.Add(destructable);
+		}
+	}
 
 	public void Deactivate() {
 		CollisionLayer = 0;
 
-		foreach (Node node in GetChildren()) {
-			if (!(node is Destructable)) continue;
+		foreach (Destructable destructable in _destructables) {
+			if (!destructable.Invincible) continue;
 
-			((Destructable)node).Invincible = false;
-			((Destructable)node).SoundEffect = null;
-		}
+			destructable.Invincible = false;
+			destructable.SoundEffect = null;
 
-		foreach (Destructable destructable in Destructables) {
 			destructable.Damage(null);
 		}
 	}

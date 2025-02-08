@@ -1,0 +1,151 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7trkiwn6g3eq"]
+
+[ext_resource type="PackedScene" uid="uid://bts585r45v1yk" path="res://content/decorations/decoration.golden_grove.tree.tscn" id="1_6p0ke"]
+[ext_resource type="Script" path="res://scripts/components/Barrier.cs" id="1_ciosh"]
+[ext_resource type="PackedScene" uid="uid://by3m0xgldgo6h" path="res://scenes/decorations/golden_grove/bush.tscn" id="3_wdxc6"]
+[ext_resource type="Texture2D" uid="uid://dyf32ajmwuhjo" path="res://sprites/biomes/golden_grove/golden_grove_tileset.aseprite" id="4_ndfii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnoas"]
+resource_local_to_scene = true
+size = Vector2(128, 32)
+
+[node name="Barrier" type="StaticBody2D"]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_ciosh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lnoas")
+
+[node name="Decorations" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Tree" parent="Decorations" instance=ExtResource("1_6p0ke")]
+position = Vector2(-52, 10)
+Invincible = true
+
+[node name="Tree2" parent="Decorations" instance=ExtResource("1_6p0ke")]
+position = Vector2(-20, -2)
+Invincible = true
+
+[node name="Tree3" parent="Decorations" instance=ExtResource("1_6p0ke")]
+position = Vector2(13, 11)
+Invincible = true
+
+[node name="Tree4" parent="Decorations" instance=ExtResource("1_6p0ke")]
+position = Vector2(50, 3)
+Invincible = true
+
+[node name="Tree5" parent="Decorations" instance=ExtResource("1_6p0ke")]
+position = Vector2(-43, -12)
+Invincible = true
+
+[node name="Tree6" parent="Decorations" instance=ExtResource("1_6p0ke")]
+position = Vector2(-25, 15)
+Invincible = true
+
+[node name="Tree7" parent="Decorations" instance=ExtResource("1_6p0ke")]
+position = Vector2(6, -9)
+Invincible = true
+
+[node name="Tree8" parent="Decorations" instance=ExtResource("1_6p0ke")]
+position = Vector2(49, -13)
+Invincible = true
+
+[node name="Bush" parent="Decorations" instance=ExtResource("3_wdxc6")]
+position = Vector2(-34, 1)
+Invincible = true
+
+[node name="Bush2" parent="Decorations" instance=ExtResource("3_wdxc6")]
+position = Vector2(-3, 13)
+Invincible = true
+
+[node name="Bush3" parent="Decorations" instance=ExtResource("3_wdxc6")]
+position = Vector2(30, 1)
+Invincible = true
+
+[node name="Grass10" type="Sprite2D" parent="Decorations"]
+y_sort_enabled = true
+position = Vector2(-44, 0)
+texture = ExtResource("4_ndfii")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(123, 88, 10, 8)
+
+[node name="Grass11" type="Sprite2D" parent="Decorations"]
+y_sort_enabled = true
+position = Vector2(-23, -3)
+texture = ExtResource("4_ndfii")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(134, 88, 12, 8)
+
+[node name="Shadow7" type="Sprite2D" parent="Decorations"]
+z_index = -6
+y_sort_enabled = true
+position = Vector2(-24, 3)
+texture = ExtResource("4_ndfii")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(135, 112, 8, 4)
+
+[node name="Shadow2" type="Sprite2D" parent="Decorations"]
+z_index = -6
+y_sort_enabled = true
+position = Vector2(-44, 6)
+texture = ExtResource("4_ndfii")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(124, 112, 8, 4)
+
+[node name="Grass12" type="Sprite2D" parent="Decorations"]
+y_sort_enabled = true
+position = Vector2(-13, 12)
+texture = ExtResource("4_ndfii")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(123, 88, 10, 8)
+
+[node name="Grass13" type="Sprite2D" parent="Decorations"]
+y_sort_enabled = true
+position = Vector2(8, 9)
+texture = ExtResource("4_ndfii")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(134, 88, 12, 8)
+
+[node name="Shadow8" type="Sprite2D" parent="Decorations"]
+z_index = -6
+y_sort_enabled = true
+position = Vector2(7, 15)
+texture = ExtResource("4_ndfii")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(135, 112, 8, 4)
+
+[node name="Shadow3" type="Sprite2D" parent="Decorations"]
+z_index = -6
+y_sort_enabled = true
+position = Vector2(-13, 18)
+texture = ExtResource("4_ndfii")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(124, 112, 8, 4)
+
+[node name="Grass6" type="Sprite2D" parent="Decorations"]
+y_sort_enabled = true
+position = Vector2(39, 5)
+texture = ExtResource("4_ndfii")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(134, 88, 12, 8)
+
+[node name="Shadow11" type="Sprite2D" parent="Decorations"]
+z_index = -6
+y_sort_enabled = true
+position = Vector2(38, 11)
+texture = ExtResource("4_ndfii")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(135, 112, 8, 4)

@@ -287,6 +287,8 @@ public class Assets {
                     }
                 }
             },
+            HorizontalBarrier = AssetManager.GetScene("barrier.golden_grove.horizontal"),
+            VerticalBarrier = AssetManager.GetScene("barrier.golden_grove.vertical"),
         });
     }
 

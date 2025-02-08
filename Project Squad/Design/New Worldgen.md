@@ -10,7 +10,7 @@ Rooms that have not been cleared yet spawn in with barriers on exit. These barri
 - [x] Game difficulty scaling
 - [x] Rounds
 - [x] Barriers
-- [ ] Decorations
+- [x] Decorations
 - [x] Room visual construction
 - [ ] Loot rooms
 - [ ] Boss room

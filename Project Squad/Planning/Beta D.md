@@ -22,7 +22,6 @@ kanban-plugin: basic
 - [ ] Alternate roll controls
 - [ ] Interact prompt for alter
 - [ ] Drop swapped weapons
-- [ ] Prevent Back Tracking
 - [ ] Rework Sacrafice
 - [ ] Options Menu
 - [ ] Finish State

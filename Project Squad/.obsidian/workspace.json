@@ -8,15 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "cadd755dc22b724a",
+            "id": "a7787c9544b99455",
             "type": "leaf",
             "state": {
-              "type": "kanban",
+              "type": "markdown",
               "state": {
-                "file": "Planning/Beta D.md"
+                "file": "Design/New Worldgen.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-trello",
-              "title": "Beta D"
+              "icon": "lucide-file",
+              "title": "New Worldgen"
             }
           }
         ]
@@ -38,7 +40,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -156,17 +159,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cadd755dc22b724a",
+  "active": "a7787c9544b99455",
   "lastOpenFiles": [
-    "Planning/Beta C Kanban.md",
     "Planning/Beta D.md",
+    "Design/New Worldgen.md",
+    "Planning/Beta C Kanban.md",
     "Planning/Beta B Kanban.md",
     "Planning/Previous/Pre Alpha Kanban.md",
     "Planning/Previous/Beta A Kanban.md",
     "Planning/Previous/Alpha Kanban.md",
     "Planning/Previous/Alpha.md",
     "Beta C Notes.md",
-    "Design/New Worldgen.md",
     "Beta B Playtest Notes.md",
     "Design/Current Design Issues/Variety and Fun in Combat.md",
     "Design/Current Design Issues/Transition of Biomes.md",
