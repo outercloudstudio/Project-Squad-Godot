@@ -102,7 +102,7 @@ public class Assets {
                             openDecorationLocations.Remove(location);
 
                             placements.Add(new WorldGenerator.DecorationPlacement {
-                                Location = location,
+                                Location = location * 16 + Vector2.One * 8f,
                                 Scene = treeScene
                             });
                         }
@@ -132,7 +132,7 @@ public class Assets {
                             openDecorationLocations.Remove(location);
 
                             placements.Add(new WorldGenerator.DecorationPlacement {
-                                Location = location,
+                                Location = location * 16 + Vector2.One * 8f,
                                 Scene = bushes[random.RandiRange(0, bushes.Length -1)],
                             });
                         }
@@ -161,7 +161,7 @@ public class Assets {
                             openDecorationLocations.Remove(location);
 
                             placements.Add(new WorldGenerator.DecorationPlacement {
-                                Location = location,
+                                Location = location * 16 + Vector2.One * 8f,
                                 Scene = grasTufts[random.RandiRange(0, grasTufts.Length -1)],
                             });
                         }
@@ -175,12 +175,13 @@ public class Assets {
                     Generate = (roomPlacement, occupiedDecorationLocations) => {
                         RandomNumberGenerator random = new RandomNumberGenerator();
 
-                        PackedScene treeScene = AssetManager.GetScene("decoration.golden_grove.edge.tree");
+                        PackedScene tree1Scene = AssetManager.GetScene("decoration.golden_grove.edge.tree_1");
+                        PackedScene tree2Scene = AssetManager.GetScene("decoration.golden_grove.edge.tree_2");
 
                         List<WorldGenerator.DecorationPlacement> placements = new List<WorldGenerator.DecorationPlacement>();
 
                         for(int index = 0; index < roomPlacement.EdgeFieldLocations.Count; index++) {
-                            bool shouldPlace = random.Randf() < 0.2f;
+                            bool shouldPlace = random.Randf() < 0.15f;
 
                             if(!shouldPlace) continue;
 
@@ -189,7 +190,49 @@ public class Assets {
 
                             if(distance < 3) continue;
 
-                            Vector2I[] occupyingCells = new Vector2I[] {location, location + new Vector2I(1, 0), location + new Vector2I(0, 1), location + new Vector2I(1, 1) };
+                            Vector2I[] occupyingCells = new Vector2I[] { location, location + new Vector2I(1, 0), location + new Vector2I(0, 1), location + new Vector2I(1, 1) };
+
+                            if(occupyingCells.Any(cell => occupiedDecorationLocations.Contains(cell))) continue;
+
+                            foreach(Vector2I cell in occupyingCells) {
+                                occupiedDecorationLocations.Add(cell);
+                            }
+
+                            if(random.Randf() < 0.5f) {
+                                placements.Add(new WorldGenerator.DecorationPlacement {
+                                    Location = location * 16 + Vector2.One * 16f,
+                                    Scene = tree1Scene
+                                });
+                            } else {
+                                placements.Add(new WorldGenerator.DecorationPlacement {
+                                    Location = location * 16 + Vector2.One * 16f,
+                                    Scene = tree2Scene
+                                });
+                            }
+                        }
+
+                        return placements;
+                    }
+                },
+                new EdgeDecoration {
+                    Generate = (roomPlacement, occupiedDecorationLocations) => {
+                        RandomNumberGenerator random = new RandomNumberGenerator();
+
+                        PackedScene treeSmallScene = AssetManager.GetScene("decoration.golden_grove.edge.tree_small");
+
+                        List<WorldGenerator.DecorationPlacement> placements = new List<WorldGenerator.DecorationPlacement>();
+
+                        for(int index = 0; index < roomPlacement.EdgeFieldLocations.Count; index++) {
+                            bool shouldPlace = random.Randf() < 0.05f;
+
+                            if(!shouldPlace) continue;
+
+                            Vector2I location = (Vector2I)roomPlacement.EdgeFieldLocations[index];
+                            int distance = roomPlacement.EdgeFieldDistances[index];
+
+                            if(distance < 3) continue;
+
+                            Vector2I[] occupyingCells = new Vector2I[] { location };
 
                             if(occupyingCells.Any(cell => occupiedDecorationLocations.Contains(cell))) continue;
 
@@ -198,8 +241,45 @@ public class Assets {
                             }
 
                             placements.Add(new WorldGenerator.DecorationPlacement {
-                                Location = location,
-                                Scene = treeScene
+
+                                Location = location * 16 + Vector2.One * 8f,
+                                Scene = treeSmallScene
+                            });
+                        }
+
+                        return placements;
+                    }
+                },
+                new EdgeDecoration {
+                    Generate = (roomPlacement, occupiedDecorationLocations) => {
+                        RandomNumberGenerator random = new RandomNumberGenerator();
+
+                        PackedScene bushScene = AssetManager.GetScene("decoration.golden_grove.edge.bush");
+
+                        List<WorldGenerator.DecorationPlacement> placements = new List<WorldGenerator.DecorationPlacement>();
+
+                        for(int index = 0; index < roomPlacement.EdgeFieldLocations.Count; index++) {
+                            bool shouldPlace = random.Randf() < 0.05f;
+
+                            if(!shouldPlace) continue;
+
+                            Vector2I location = (Vector2I)roomPlacement.EdgeFieldLocations[index];
+                            int distance = roomPlacement.EdgeFieldDistances[index];
+
+                            if(distance < 3) continue;
+
+                            Vector2I[] occupyingCells = new Vector2I[] { location };
+
+                            if(occupyingCells.Any(cell => occupiedDecorationLocations.Contains(cell))) continue;
+
+                            foreach(Vector2I cell in occupyingCells) {
+                                occupiedDecorationLocations.Add(cell);
+                            }
+
+                            placements.Add(new WorldGenerator.DecorationPlacement {
+
+                                Location = location * 16 + Vector2.One * 8f,
+                                Scene = bushScene
                             });
                         }
 

@@ -91,7 +91,7 @@ public partial class WorldGenerator : Node, NetworkPointUser {
 
     public struct DecorationPlacement {
         public PackedScene Scene;
-        public Vector2I Location;
+        public Vector2 Location;
     }
 
     public static WorldGenerator Me;

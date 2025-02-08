@@ -84,7 +84,7 @@ public class LoadableRoom {
 
             _room.AddChild(decoration);
 
-            decoration.GlobalPosition = decorationPlacement.Location * 16 + Vector2.One * 8f;
+            decoration.GlobalPosition = decorationPlacement.Location;
         }
 
         if (RoomPlacement.Type == WorldGenerator.RoomPlacement.RoomType.Spawn) return;
