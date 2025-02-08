@@ -16,6 +16,7 @@ collision_mask = 0
 script = ExtResource("1_u3wwj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_lnoas")
 
 [node name="Decorations" type="Node2D" parent="."]
@@ -50,12 +51,6 @@ position = Vector2(7, -10)
 Invincible = true
 
 [node name="Bush" parent="Decorations" instance=ExtResource("3_m8jbc")]
-Invincible = true
-
-[node name="Bush2" parent="Decorations" instance=ExtResource("3_m8jbc")]
-Invincible = true
-
-[node name="Bush3" parent="Decorations" instance=ExtResource("3_m8jbc")]
 Invincible = true
 
 [node name="Grass10" type="Sprite2D" parent="Decorations"]
