@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using Networking;
+using Riptide;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -70,6 +71,43 @@ public partial class WorldGenerator : Node, NetworkPointUser {
 
         public int GetHeight() {
             return (int)(RoomLayout.BottomRightBound.Y - RoomLayout.TopLeftBound.Y);
+        }
+
+        public void Serialize(Message message) {
+            GD.Print(RoomLayout.ResourcePath);
+            message.AddString(RoomLayout.ResourcePath);
+
+            message.AddFloat(Location.X);
+            message.AddFloat(Location.Y);
+
+            message.AddInt((int)Type);
+
+            message.AddFloat(EntranceConnection.Location.X);
+            message.AddFloat(EntranceConnection.Location.Y);
+            message.AddFloat(EntranceConnection.Direction.X);
+            message.AddFloat(EntranceConnection.Direction.Y);
+
+            message.AddInt(Decorations.Count);
+            foreach (DecorationPlacement decoration in Decorations) {
+                message.AddString(decoration.Scene.ResourcePath);
+                message.AddFloat(decoration.Location.X);
+                message.AddFloat(decoration.Location.Y);
+            }
+
+            message.AddInt(EdgeFieldLocations.Count);
+            foreach (Vector2 location in EdgeFieldLocations) {
+                message.AddFloat(location.X);
+                message.AddFloat(location.Y);
+            }
+
+            message.AddInt(EdgeFieldDistances.Count);
+            foreach (int distance in EdgeFieldDistances) {
+                message.AddInt(distance);
+            }
+        }
+
+        public static RoomPlacement Deserialize(Message message) {
+            return null;
         }
     }
 
@@ -158,6 +196,8 @@ public partial class WorldGenerator : Node, NetworkPointUser {
 
         GD.Print($"[Worldgen] Generate decorations: {stopwatch.ElapsedMilliseconds}ms");
         stopwatch.Restart();
+
+        placedRooms.First().Serialize(Message.Create());
 
         return placedRooms;
     }

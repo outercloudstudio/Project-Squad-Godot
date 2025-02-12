@@ -6,6 +6,9 @@ kanban-plugin: basic
 
 ## Todo
 
+- [ ] [[Scaling of Trinkets]] #design
+- [ ] More Trinkets #design
+- [ ] Location transitions
 - [ ] More Music #content
 - [ ] More Weapons #design
 - [ ] Fix swamp barrier
@@ -18,15 +21,13 @@ kanban-plugin: basic
 
 ## Must Do
 
-- [ ] Location transitions
 - [ ] Alternate roll controls
 - [ ] Interact prompt for alter
 - [ ] Drop swapped weapons
 - [ ] Rework Sacrafice
 - [ ] Options Menu
 - [ ] Finish State
-- [ ] More Trinkets #design
-- [ ] [[Scaling of Trinkets]] #design
+- [ ] Improve main menu
 
 
 ## In Progress
