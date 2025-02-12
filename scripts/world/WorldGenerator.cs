@@ -107,6 +107,9 @@ public partial class WorldGenerator : Node, NetworkPointUser {
     }
 
     public Stack<RoomPlacement> Generate(ulong seed, Biome biome) {
+        System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+        stopwatch.Start();
+
         _random = new RandomNumberGenerator();
         _random.Seed = seed;
 
@@ -124,6 +127,9 @@ public partial class WorldGenerator : Node, NetworkPointUser {
             Type = RoomPlacement.RoomType.Spawn
         };
 
+        GD.Print($"[Worldgen] Setup: {stopwatch.ElapsedMilliseconds}ms");
+        stopwatch.Restart();
+
         Stack<RoomPlacement> placedRooms = new Stack<RoomPlacement>();
         placedRooms.Push(spawnRoomPlacement);
 
@@ -131,15 +137,27 @@ public partial class WorldGenerator : Node, NetworkPointUser {
 
         bool result = TryPlaceRooms(biome, placedRooms, lastConnection, size - 1, size, 0);
 
+        GD.Print($"[Worldgen] Place Rooms: {stopwatch.ElapsedMilliseconds}ms");
+        stopwatch.Restart();
+
         if (!result) return Generate(seed + 1, biome);
 
         placedRooms = FlattenPlacedRooms(placedRooms);
 
+        GD.Print($"[Worldgen] Flatten placements: {stopwatch.ElapsedMilliseconds}ms");
+        stopwatch.Restart();
+
         ResolveEdgeFields(placedRooms);
+
+        GD.Print($"[Worldgen] Resolve edge fields: {stopwatch.ElapsedMilliseconds}ms");
+        stopwatch.Restart();
 
         foreach (RoomPlacement roomPlacement in placedRooms) {
             GenerateDecorations(roomPlacement, biome);
         }
+
+        GD.Print($"[Worldgen] Generate decorations: {stopwatch.ElapsedMilliseconds}ms");
+        stopwatch.Restart();
 
         return placedRooms;
     }
