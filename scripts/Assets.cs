@@ -293,17 +293,7 @@ public class Assets {
     }
 
     private static SmartTile.Modifier CreateRandomVariantModifier(Vector2 target, Vector2[] variants) {
-        RandomNumberGenerator random = new RandomNumberGenerator();
-        random.Seed = Game.Seed;
-
-        uint seedCache = Game.Seed;
-
-        return (Vector2I center, Vector2I location) => {
-            if (seedCache != Game.Seed) {
-                random.Seed = Game.Seed;
-                seedCache = Game.Seed;
-            }
-
+        return (Vector2I center, Vector2I location, RandomNumberGenerator random) => {
             if (location == center + target) {
                 int index = random.RandiRange(0, variants.Length);
 

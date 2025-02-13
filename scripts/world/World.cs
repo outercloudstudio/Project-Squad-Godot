@@ -108,26 +108,6 @@ public partial class World : Node2D, NetworkPointUser {
         return _loadedRooms.Keys.ToList().Find(room => room.Id == Id);
     }
 
-    // private void PlaceRoom(WorldGenerator.RoomPlacement placement) {
-    //     foreach (Vector2 tileLocation in placement.RoomLayout.Walls) {
-    //         Vector2I realTileLocation = placement.Location + new Vector2I((int)tileLocation.X, (int)tileLocation.Y);
-
-    //         WallsTileMapLayer.SetCell(realTileLocation, 0, new Vector2I(3, 0));
-    //     }
-
-    //     if (placement is WorldGenerator.BranchedRoomPlacement branchPlacement) {
-    //         foreach (Stack<WorldGenerator.RoomPlacement> branchStack in branchPlacement.BranchRoomPlacements) {
-    //             foreach (WorldGenerator.RoomPlacement branchRoomPlacement in branchStack) {
-    //                 foreach (Vector2 tileLocation in branchRoomPlacement.RoomLayout.Walls) {
-    //                     Vector2I realTileLocation = branchRoomPlacement.Location + new Vector2I((int)tileLocation.X, (int)tileLocation.Y);
-
-    //                     WallsTileMapLayer.SetCell(realTileLocation, 0, new Vector2I(3, 0));
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-
     public void SpawnEnemyRpc(Message message) {
         Vector2 position = new Vector2(message.GetFloat(), message.GetFloat());
         string enemyScenePath = message.GetString();

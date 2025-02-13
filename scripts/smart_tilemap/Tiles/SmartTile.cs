@@ -9,7 +9,7 @@ public partial class SmartTile {
 
     public string Id;
     public int Source;
-    public delegate Vector2I Modifier(Vector2I center, Vector2I location);
+    public delegate Vector2I Modifier(Vector2I center, Vector2I location, RandomNumberGenerator random);
     public Modifier[] Modifiers;
 
     protected virtual Vector2? GetTileLocation(Vector2I location, Func<Vector2I, bool> isTile) {
@@ -20,25 +20,25 @@ public partial class SmartTile {
         return Vector2I.Zero;
     }
 
-    protected Vector2I ApplyModifiers(Vector2I location) {
+    protected Vector2I ApplyModifiers(Vector2I location, RandomNumberGenerator random) {
         Vector2I center = GetCenter();
 
         if (Modifiers != null) {
             foreach (Modifier smartTileModifier in Modifiers) {
-                location = smartTileModifier(center, location);
+                location = smartTileModifier(center, location, random);
             }
         }
 
         return location;
     }
 
-    public Tile? GetTile(Vector2I location, Func<Vector2I, bool> isTile) {
+    public Tile? GetTile(Vector2I location, Func<Vector2I, bool> isTile, RandomNumberGenerator random) {
         Vector2? possibleTileLocation = GetTileLocation(location, isTile);
 
         if (!(possibleTileLocation is Vector2 tileLocation)) return null;
 
         return new Tile {
-            Location = ApplyModifiers((Vector2I)tileLocation),
+            Location = ApplyModifiers((Vector2I)tileLocation, random),
             Source = Source,
         };
     }
