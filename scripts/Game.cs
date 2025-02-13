@@ -68,16 +68,11 @@ public partial class Game : Node2D, NetworkPointUser {
             clientIds.Add(connection.Id);
         }
 
-        Seed = new RandomNumberGenerator().Randi();
-
-        RandomNumberGenerator = new RandomNumberGenerator {
-            Seed = Seed
-        };
-
         Difficulty = clientIds.Count;
 
         Me.NetworkPoint.SendRpcToClients(nameof(StartRpc), message => {
             message.AddInts(clientIds.ToArray());
+            message.AddUInt(new RandomNumberGenerator().Randi());
         });
     }
 
@@ -93,6 +88,13 @@ public partial class Game : Node2D, NetworkPointUser {
 
     private void StartRpc(Message message) {
         int[] clientIds = message.GetInts();
+        uint seed = message.GetUInt();
+
+        Seed = seed;
+
+        RandomNumberGenerator = new RandomNumberGenerator {
+            Seed = Seed
+        };
 
         World.Start();
 
