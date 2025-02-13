@@ -26,6 +26,8 @@ public partial class World : Node2D, NetworkPointUser {
         NetworkPoint.Setup(this);
 
         NetworkPoint.Register(nameof(SpawnEnemyRpc), SpawnEnemyRpc);
+        NetworkPoint.Register(nameof(LoadRoomRpc), LoadRoomRpc);
+        NetworkPoint.Register(nameof(UnloadRoomRpc), UnloadRoomRpc);
 
         WallsTileMapLayer = GetNode<TileMapLayer>("Walls");
         RoofsTileMapLayer = GetNode<TileMapLayer>("Roofs");
@@ -41,6 +43,8 @@ public partial class World : Node2D, NetworkPointUser {
     }
 
     public override void _Process(double delta) {
+        if (!NetworkManager.IsHost) return;
+
         foreach (Player player in Player.Players) {
             Load(player.GlobalPosition);
         }
@@ -59,6 +63,8 @@ public partial class World : Node2D, NetworkPointUser {
             Me._unloadedRooms.Add(new LoadableRoom(roomPlacement, Me, Me._activeBiome));
         }
 
+        if (!NetworkManager.IsHost) return;
+
         Me.Load(Vector2.Zero);
     }
 
@@ -74,14 +80,12 @@ public partial class World : Node2D, NetworkPointUser {
         for (int index = 0; index < _unloadedRooms.Count; index++) {
             LoadableRoom loadableRoom = _unloadedRooms[index];
 
+            if (loadableRoom.QueueLoaded) continue;
+
             if (location.DistanceTo(loadableRoom.RoomPlacement.Location * 16) > 600) continue;
 
-            _unloadedRooms.RemoveAt(index);
-            index--;
-
-            _loadedRooms.Add(loadableRoom, 10);
-
-            loadableRoom.Load();
+            NetworkPoint.SendRpcToClients(nameof(LoadRoomRpc), message => message.AddUInt(loadableRoom.Id));
+            loadableRoom.QueueLoaded = true;
         }
     }
 
@@ -89,6 +93,8 @@ public partial class World : Node2D, NetworkPointUser {
         List<LoadableRoom> loadedRooms = _loadedRooms.Keys.ToList();
 
         foreach (LoadableRoom room in loadedRooms) {
+            if (!room.QueueLoaded) continue;
+
             _loadedRooms[room] -= delta;
 
             if (_loadedRooms[room] > 0) {
@@ -97,21 +103,42 @@ public partial class World : Node2D, NetworkPointUser {
                 continue;
             }
 
-            _loadedRooms.Remove(room);
-            _unloadedRooms.Add(room);
-
-            room.Unload();
+            NetworkPoint.SendRpcToClients(nameof(UnloadRoomRpc), message => message.AddUInt(room.Id));
+            room.QueueLoaded = false;
         }
     }
 
-    private LoadableRoom GetRoom(string Id) {
+    private LoadableRoom GetRoom(uint Id) {
         return _loadedRooms.Keys.ToList().Find(room => room.Id == Id);
+    }
+
+    public void LoadRoomRpc(Message message) {
+        uint id = message.GetUInt();
+
+        int index = _unloadedRooms.FindIndex(room => room.Id == id);
+        LoadableRoom loadableRoom = _unloadedRooms[index];
+
+        _unloadedRooms.RemoveAt(index);
+        _loadedRooms.Add(loadableRoom, 10);
+
+        loadableRoom.Load();
+    }
+
+    public void UnloadRoomRpc(Message message) {
+        uint id = message.GetUInt();
+
+        LoadableRoom room = GetRoom(id);
+
+        _loadedRooms.Remove(room);
+        _unloadedRooms.Add(room);
+
+        room.Unload();
     }
 
     public void SpawnEnemyRpc(Message message) {
         Vector2 position = new Vector2(message.GetFloat(), message.GetFloat());
         string enemyScenePath = message.GetString();
-        string roomId = message.GetString();
+        uint roomId = message.GetUInt();
 
         Enemy enemy = NetworkManager.SpawnNetworkSafe<Enemy>(ResourceLoader.Load<PackedScene>(enemyScenePath), "Enemy");
 

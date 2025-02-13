@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using Networking;
 
 public class LoadableRoom {
     public WorldGenerator.RoomPlacement RoomPlacement;
-    public string Id;
+    public uint Id;
     public bool Cleared = false;
+    public bool QueueLoaded = false;
 
     private World _world;
     private Biome _biome;
@@ -19,7 +21,7 @@ public class LoadableRoom {
 
 
     public LoadableRoom(WorldGenerator.RoomPlacement roomPlacement, World world, Biome biome) {
-        Id = Guid.NewGuid().ToString();
+        Id = roomPlacement.Id;
 
         RoomPlacement = roomPlacement;
         _world = world;
@@ -92,7 +94,6 @@ public class LoadableRoom {
 
         if (RoomPlacement.Type == WorldGenerator.RoomPlacement.RoomType.Spawn) return;
 
-
         if (Cleared) return;
 
         foreach (RoomLayout.Connection connection in RoomPlacement.RoomLayout.GetConnections()) {
@@ -135,6 +136,8 @@ public class LoadableRoom {
     }
 
     public void Update(float delta) {
+        if (!NetworkManager.IsHost) return;
+
         if (RoomPlacement.Type != WorldGenerator.RoomPlacement.RoomType.None) return;
 
         if (!_activated) {
@@ -243,7 +246,7 @@ public class LoadableRoom {
 
                 message.AddString(_biome.EnemyPool.Entries[enemyTypeIndex].Scene.ResourcePath);
 
-                message.AddString(Id);
+                message.AddUInt(Id);
             });
         }
     }

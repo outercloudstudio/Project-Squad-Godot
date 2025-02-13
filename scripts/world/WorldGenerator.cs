@@ -22,9 +22,11 @@ public partial class WorldGenerator : Node, NetworkPointUser {
         public List<Vector2> EdgeFieldLocations = new List<Vector2>();
         public List<int> EdgeFieldDistances = new List<int>();
         public uint Seed;
+        public uint Id;
 
-        public RoomPlacement(RandomNumberGenerator random) {
+        public RoomPlacement(RandomNumberGenerator random, uint id) {
             Seed = random.Randi();
+            Id = id;
         }
 
         public virtual bool Intersects(RoomPlacement otherRoom) {
@@ -80,7 +82,7 @@ public partial class WorldGenerator : Node, NetworkPointUser {
     private class BranchedRoomPlacement : RoomPlacement {
         public List<Stack<RoomPlacement>> BranchRoomPlacements;
 
-        public BranchedRoomPlacement(RandomNumberGenerator random) : base(random) { }
+        public BranchedRoomPlacement(RandomNumberGenerator random, uint id) : base(random, id) { }
 
         public override bool Intersects(RoomPlacement otherRoom) {
             if (base.Intersects(otherRoom)) return true;
@@ -105,6 +107,7 @@ public partial class WorldGenerator : Node, NetworkPointUser {
     public NetworkPoint NetworkPoint { get; set; } = new NetworkPoint();
 
     private RandomNumberGenerator _random;
+    private uint _nextId;
 
     public override void _Ready() {
         Me = this;
@@ -119,6 +122,8 @@ public partial class WorldGenerator : Node, NetworkPointUser {
         _random = new RandomNumberGenerator();
         _random.Seed = seed;
 
+        _nextId = 0;
+
         RoomLayout.Connection lastConnection;
 
         RoomLayout spawnRoomLayout = biome.SpawnRoomLayouts[0];
@@ -127,11 +132,12 @@ public partial class WorldGenerator : Node, NetworkPointUser {
         lastConnection = spawnRoomLayout.GetConnections()[0];
         lastConnection.Location += spawnRoomPlaceLocation;
 
-        RoomPlacement spawnRoomPlacement = new RoomPlacement(_random) {
+        RoomPlacement spawnRoomPlacement = new RoomPlacement(_random, _nextId) {
             RoomLayout = spawnRoomLayout,
             Location = new Vector2I((int)spawnRoomPlaceLocation.X, (int)spawnRoomPlaceLocation.Y),
             Type = RoomPlacement.RoomType.Spawn
         };
+        _nextId++;
 
         GD.Print($"[Worldgen] Setup: {stopwatch.ElapsedMilliseconds}ms");
         stopwatch.Restart();
@@ -215,11 +221,12 @@ public partial class WorldGenerator : Node, NetworkPointUser {
 
             Vector2 placeLocation = lastConnection.Location - targetConnection.Location;
 
-            RoomPlacement placement = new RoomPlacement(_random) {
+            RoomPlacement placement = new RoomPlacement(_random, _nextId) {
                 RoomLayout = roomLayout,
                 Location = new Vector2I((int)placeLocation.X, (int)placeLocation.Y),
                 EntranceConnection = targetConnection
             };
+            _nextId++;
 
             if (roomsToPlace == 1) placement.Type = RoomPlacement.RoomType.Final;
 
@@ -263,12 +270,13 @@ public partial class WorldGenerator : Node, NetworkPointUser {
                         Direction = connections[nextConnectionIndex].Direction
                     };
 
-                    BranchedRoomPlacement branchedRoomPlacement = new BranchedRoomPlacement(_random) {
+                    BranchedRoomPlacement branchedRoomPlacement = new BranchedRoomPlacement(_random, _nextId) {
                         RoomLayout = placement.RoomLayout,
                         Location = placement.Location,
                         EntranceConnection = placement.EntranceConnection,
                         BranchRoomPlacements = new List<Stack<RoomPlacement>>(),
                     };
+                    _nextId++;
 
                     bool branchesValid = true;
 
@@ -367,11 +375,12 @@ public partial class WorldGenerator : Node, NetworkPointUser {
 
             Vector2 placeLocation = lastConnection.Location - targetConnection.Location;
 
-            RoomPlacement placement = new RoomPlacement(_random) {
+            RoomPlacement placement = new RoomPlacement(_random, _nextId) {
                 RoomLayout = roomLayout,
                 Location = new Vector2I((int)placeLocation.X, (int)placeLocation.Y),
                 EntranceConnection = targetConnection
             };
+            _nextId++;
 
             if (roomsToPlace == 1) placement.Type = RoomPlacement.RoomType.Loot;
 
