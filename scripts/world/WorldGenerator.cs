@@ -1,6 +1,5 @@
 using Godot;
 using Networking;
-using Riptide;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,6 +21,11 @@ public partial class WorldGenerator : Node, NetworkPointUser {
         public List<DecorationPlacement> Decorations = new List<DecorationPlacement>();
         public List<Vector2> EdgeFieldLocations = new List<Vector2>();
         public List<int> EdgeFieldDistances = new List<int>();
+        public uint Seed;
+
+        public RoomPlacement(RandomNumberGenerator random) {
+            Seed = random.Randi();
+        }
 
         public virtual bool Intersects(RoomPlacement otherRoom) {
             if (otherRoom.GetTopLeftBound().X >= GetTopLeftBound().X && otherRoom.GetTopLeftBound().X < GetBottomRightBound().X && otherRoom.GetTopLeftBound().Y >= GetTopLeftBound().Y && otherRoom.GetTopLeftBound().Y < GetBottomRightBound().Y) return true;
@@ -76,6 +80,8 @@ public partial class WorldGenerator : Node, NetworkPointUser {
     private class BranchedRoomPlacement : RoomPlacement {
         public List<Stack<RoomPlacement>> BranchRoomPlacements;
 
+        public BranchedRoomPlacement(RandomNumberGenerator random) : base(random) { }
+
         public override bool Intersects(RoomPlacement otherRoom) {
             if (base.Intersects(otherRoom)) return true;
 
@@ -121,7 +127,7 @@ public partial class WorldGenerator : Node, NetworkPointUser {
         lastConnection = spawnRoomLayout.GetConnections()[0];
         lastConnection.Location += spawnRoomPlaceLocation;
 
-        RoomPlacement spawnRoomPlacement = new RoomPlacement {
+        RoomPlacement spawnRoomPlacement = new RoomPlacement(_random) {
             RoomLayout = spawnRoomLayout,
             Location = new Vector2I((int)spawnRoomPlaceLocation.X, (int)spawnRoomPlaceLocation.Y),
             Type = RoomPlacement.RoomType.Spawn
@@ -209,7 +215,7 @@ public partial class WorldGenerator : Node, NetworkPointUser {
 
             Vector2 placeLocation = lastConnection.Location - targetConnection.Location;
 
-            RoomPlacement placement = new RoomPlacement {
+            RoomPlacement placement = new RoomPlacement(_random) {
                 RoomLayout = roomLayout,
                 Location = new Vector2I((int)placeLocation.X, (int)placeLocation.Y),
                 EntranceConnection = targetConnection
@@ -257,7 +263,7 @@ public partial class WorldGenerator : Node, NetworkPointUser {
                         Direction = connections[nextConnectionIndex].Direction
                     };
 
-                    BranchedRoomPlacement branchedRoomPlacement = new BranchedRoomPlacement {
+                    BranchedRoomPlacement branchedRoomPlacement = new BranchedRoomPlacement(_random) {
                         RoomLayout = placement.RoomLayout,
                         Location = placement.Location,
                         EntranceConnection = placement.EntranceConnection,
@@ -361,7 +367,7 @@ public partial class WorldGenerator : Node, NetworkPointUser {
 
             Vector2 placeLocation = lastConnection.Location - targetConnection.Location;
 
-            RoomPlacement placement = new RoomPlacement {
+            RoomPlacement placement = new RoomPlacement(_random) {
                 RoomLayout = roomLayout,
                 Location = new Vector2I((int)placeLocation.X, (int)placeLocation.Y),
                 EntranceConnection = targetConnection
@@ -434,20 +440,20 @@ public partial class WorldGenerator : Node, NetworkPointUser {
         }
 
         foreach (Decoration decoration in biome.Decorations) {
-            decorations.AddRange(decoration.Generate(roomPlacement, openDecorationLocations));
+            decorations.AddRange(decoration.Generate(roomPlacement, openDecorationLocations, _random));
         }
 
         List<Vector2I> occupiedDecorationLocations = new List<Vector2I>();
 
         foreach (EdgeDecoration decoration in biome.EdgeDecorations) {
-            decorations.AddRange(decoration.Generate(roomPlacement, occupiedDecorationLocations));
+            decorations.AddRange(decoration.Generate(roomPlacement, occupiedDecorationLocations, _random));
         }
 
         roomPlacement.Decorations = decorations;
     }
 
     private void ResolveEdgeFields(Stack<RoomPlacement> placedRooms) {
-        System.Collections.Generic.Dictionary<Vector2, int> edgeField = new System.Collections.Generic.Dictionary<Vector2, int>();
+        Dictionary<Vector2, int> edgeField = new Dictionary<Vector2, int>();
 
         foreach (RoomPlacement roomPlacement in placedRooms) {
             if (roomPlacement.RoomLayout.EdgeFieldPosition == null) continue;

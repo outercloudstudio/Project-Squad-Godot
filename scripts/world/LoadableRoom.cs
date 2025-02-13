@@ -27,6 +27,9 @@ public class LoadableRoom {
     }
 
     public void Load() {
+        RandomNumberGenerator random = new RandomNumberGenerator();
+        random.Seed = RoomPlacement.Seed;
+
         SmartTile wallTile = _biome.Tileset.GetTile("walls");
         SmartTile roofTile = _biome.Tileset.GetTile("roofs");
         SmartTile shadowTile = _biome.Tileset.GetTile("shadows");
@@ -49,10 +52,10 @@ public class LoadableRoom {
         foreach (Vector2 tileLocation in RoomPlacement.RoomLayout.Walls) {
             Vector2I realTileLocation = RoomPlacement.Location + new Vector2I((int)tileLocation.X, (int)tileLocation.Y);
 
-            SmartTile.Tile? possibleWallTile = wallTile.GetTile(realTileLocation, RoomPlacement.IsTileWallOrBounds);
-            SmartTile.Tile? possibleRoofTile = roofTile.GetTile(realTileLocation, RoomPlacement.IsTileWallOrBounds);
-            SmartTile.Tile? possibleShadowTile = shadowTile.GetTile(realTileLocation + Vector2I.Down, RoomPlacement.IsTileWallOrBounds);
-            SmartTile.Tile? possibleUpperShadowTile = shadowTile.GetTile(realTileLocation, RoomPlacement.IsTileWallOrBounds);
+            SmartTile.Tile? possibleWallTile = wallTile.GetTile(realTileLocation, RoomPlacement.IsTileWallOrBounds, random);
+            SmartTile.Tile? possibleRoofTile = roofTile.GetTile(realTileLocation, RoomPlacement.IsTileWallOrBounds, random);
+            SmartTile.Tile? possibleShadowTile = shadowTile.GetTile(realTileLocation + Vector2I.Down, RoomPlacement.IsTileWallOrBounds, random);
+            SmartTile.Tile? possibleUpperShadowTile = shadowTile.GetTile(realTileLocation, RoomPlacement.IsTileWallOrBounds, random);
 
 
             if (possibleWallTile is SmartTile.Tile wallTileData) _world.WallsTileMapLayer.SetCell(realTileLocation, wallTileData.Source, wallTileData.Location);
@@ -63,10 +66,10 @@ public class LoadableRoom {
 
         for (int x = (int)RoomPlacement.GetTopLeftBound().X; x < (int)RoomPlacement.GetBottomRightBound().X; x++) {
             for (int y = (int)RoomPlacement.GetTopLeftBound().Y; y < (int)RoomPlacement.GetBottomRightBound().Y; y++) {
-                SmartTile.Tile? possibleFloorTile = floorTile.GetTile(new Vector2I(x, y), RoomPlacement.IsTileWallOrBounds);
+                SmartTile.Tile? possibleFloorTile = floorTile.GetTile(new Vector2I(x, y), RoomPlacement.IsTileWallOrBounds, random);
                 SmartTile.Tile? possibleGrassTile = grassTile.GetTile(new Vector2I(x, y), location => {
                     return noise.GetNoise2D(location.X, location.Y) > 0;
-                });
+                }, random);
 
                 if (possibleFloorTile is SmartTile.Tile floorTileData) _world.FloorsTileMapLayer.SetCell(new Vector2I(x, y), floorTileData.Source, floorTileData.Location);
                 if (possibleGrassTile is SmartTile.Tile grassTileData) _world.GrassTileMapLayer.SetCell(new Vector2I(x, y), grassTileData.Source, grassTileData.Location);

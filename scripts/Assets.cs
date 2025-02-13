@@ -85,9 +85,7 @@ public class Assets {
             },
             Decorations = new Decoration[] {
                 new Decoration {
-                    Generate = (roomPlacement, openDecorationLocations) => {
-                        RandomNumberGenerator random = new RandomNumberGenerator();
-
+                    Generate = (roomPlacement, openDecorationLocations, random) => {
                         PackedScene treeScene = AssetManager.GetScene("decoration.golden_grove.tree");
 
                         int amount = (int)(openDecorationLocations.Count * 0.02f);
@@ -111,9 +109,7 @@ public class Assets {
                     }
                 },
                 new Decoration {
-                    Generate = (roomPlacement, openDecorationLocations) => {
-                        RandomNumberGenerator random = new RandomNumberGenerator();
-
+                    Generate = (roomPlacement, openDecorationLocations, random) => {
                         PackedScene[] bushes = new PackedScene[] {
                             AssetManager.GetScene("decoration.golden_grove.bush_1"),
                             AssetManager.GetScene("decoration.golden_grove.bush_2"),
@@ -141,9 +137,7 @@ public class Assets {
                     }
                 },
                 new Decoration {
-                    Generate = (roomPlacement, openDecorationLocations) => {
-                        RandomNumberGenerator random = new RandomNumberGenerator();
-
+                    Generate = (roomPlacement, openDecorationLocations, random) => {
                         PackedScene[] grasTufts = new PackedScene[] {
                             AssetManager.GetScene("decoration.golden_grove.grass_tuft_1"),
                             AssetManager.GetScene("decoration.golden_grove.grass_tuft_2"),
@@ -172,9 +166,7 @@ public class Assets {
             },
             EdgeDecorations = new EdgeDecoration[] {
                 new EdgeDecoration {
-                    Generate = (roomPlacement, occupiedDecorationLocations) => {
-                        RandomNumberGenerator random = new RandomNumberGenerator();
-
+                    Generate = (roomPlacement, occupiedDecorationLocations, random) => {
                         PackedScene tree1Scene = AssetManager.GetScene("decoration.golden_grove.edge.tree_1");
                         PackedScene tree2Scene = AssetManager.GetScene("decoration.golden_grove.edge.tree_2");
 
@@ -215,9 +207,7 @@ public class Assets {
                     }
                 },
                 new EdgeDecoration {
-                    Generate = (roomPlacement, occupiedDecorationLocations) => {
-                        RandomNumberGenerator random = new RandomNumberGenerator();
-
+                    Generate = (roomPlacement, occupiedDecorationLocations, random) => {
                         PackedScene treeSmallScene = AssetManager.GetScene("decoration.golden_grove.edge.tree_small");
 
                         List<WorldGenerator.DecorationPlacement> placements = new List<WorldGenerator.DecorationPlacement>();
@@ -251,9 +241,7 @@ public class Assets {
                     }
                 },
                 new EdgeDecoration {
-                    Generate = (roomPlacement, occupiedDecorationLocations) => {
-                        RandomNumberGenerator random = new RandomNumberGenerator();
-
+                    Generate = (roomPlacement, occupiedDecorationLocations, random) => {
                         PackedScene bushScene = AssetManager.GetScene("decoration.golden_grove.edge.bush");
 
                         List<WorldGenerator.DecorationPlacement> placements = new List<WorldGenerator.DecorationPlacement>();
