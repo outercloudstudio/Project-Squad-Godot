@@ -111,5 +111,7 @@ public partial class Game : Node2D, NetworkPointUser {
         while (Player.Players.Count > 0) {
             Player.Players[0].Cleanup();
         }
+
+        World.Cleanup();
     }
 }

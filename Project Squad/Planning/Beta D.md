@@ -14,20 +14,20 @@ kanban-plugin: basic
 - [ ] Fix swamp barrier
 - [ ] Projectiles should pierce decorations
 - [ ] Fix desynced cosmetic animations
-- [ ] Improve death
 - [ ] Improve enemy projectiles
 - [ ] Improve random sources for worldgen
+- [ ] Alternate roll controls
 
 
 ## Must Do
 
-- [ ] Alternate roll controls
 - [ ] Interact prompt for alter
 - [ ] Drop swapped weapons
 - [ ] Rework Sacrafice
-- [ ] Options Menu
-- [ ] Finish State
 - [ ] Improve main menu
+- [ ] Finish State
+- [ ] Options Menu
+- [ ] Improve death
 
 
 ## In Progress

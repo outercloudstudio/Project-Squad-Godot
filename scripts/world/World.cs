@@ -68,6 +68,15 @@ public partial class World : Node2D, NetworkPointUser {
         Me.Load(Vector2.Zero);
     }
 
+    public static void Cleanup() {
+        foreach (LoadableRoom loadableRoom in Me._loadedRooms.Keys) {
+            loadableRoom.Unload();
+        }
+
+        Me._loadedRooms = new Dictionary<LoadableRoom, float>();
+        Me._unloadedRooms = new List<LoadableRoom>();
+    }
+
     private void Load(Vector2 location) {
         List<LoadableRoom> loadedRooms = _loadedRooms.Keys.ToList();
 
