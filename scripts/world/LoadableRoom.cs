@@ -126,6 +126,7 @@ public class LoadableRoom {
         for (int x = (int)RoomPlacement.GetTopLeftBound().X; x < (int)RoomPlacement.GetBottomRightBound().X; x++) {
             for (int y = (int)RoomPlacement.GetTopLeftBound().Y; y < (int)RoomPlacement.GetBottomRightBound().Y; y++) {
                 _world.FloorsTileMapLayer.SetCell(new Vector2I(x, y), -1);
+                _world.GrassTileMapLayer.SetCell(new Vector2I(x, y), -1);
             }
         }
 
