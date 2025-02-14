@@ -22,6 +22,8 @@ public class Assets {
                 AssetManager.GetScene("room.golden_grove.horizontal"),
                 AssetManager.GetScene("room.golden_grove.branch"),
                 AssetManager.GetScene("room.golden_grove.branch_left"),
+                AssetManager.GetScene("room.golden_grove.large"),
+                AssetManager.GetScene("room.golden_grove.obstacle"),
             },
             SpawnRooms = new PackedScene[] {
                  AssetManager.GetScene("room.golden_grove.spawn")
