@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://8nft4fq0fngx"]
 
-[ext_resource type="Script" path="res://scripts/items/trinkets/Trinket.cs" id="1_7a81m"]
+[ext_resource type="Script" uid="uid://cs5rc70meduyf" path="res://scripts/items/trinkets/Trinket.cs" id="1_7a81m"]
 [ext_resource type="Texture2D" uid="uid://dvmehtji52kfr" path="res://sprites/items/trinkets/trinket_perfume.tres" id="3_3jrbs"]
 
 [node name="PerfumeTrinket" type="Node2D"]

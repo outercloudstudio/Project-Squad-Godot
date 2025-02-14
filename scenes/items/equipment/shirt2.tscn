@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bppjdyp3rbk0k"]
 
-[ext_resource type="Script" path="res://scripts/items/equipment/Equipment.cs" id="1_6shwf"]
+[ext_resource type="Script" uid="uid://dtemvejtb7uvu" path="res://scripts/items/equipment/Equipment.cs" id="1_6shwf"]
 [ext_resource type="Texture2D" uid="uid://xgsysg0q1dvr" path="res://sprites/items/equipment/shirt2.tres" id="2_eo0h0"]
 [ext_resource type="Material" uid="uid://b24jrbb127ayp" path="res://scripts/shaders/white.tres" id="3_iusv8"]
 
@@ -184,11 +184,11 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_20flx"]
 _data = {
-"RESET": SubResource("Animation_s0dlr"),
-"dash": SubResource("Animation_owyfp"),
-"hurt": SubResource("Animation_qdkxg"),
-"idle": SubResource("Animation_l6iun"),
-"run": SubResource("Animation_ka3t6")
+&"RESET": SubResource("Animation_s0dlr"),
+&"dash": SubResource("Animation_owyfp"),
+&"hurt": SubResource("Animation_qdkxg"),
+&"idle": SubResource("Animation_l6iun"),
+&"run": SubResource("Animation_ka3t6")
 }
 
 [node name="Shirt2" type="Node2D"]

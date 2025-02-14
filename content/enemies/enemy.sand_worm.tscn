@@ -1,13 +1,13 @@
 [gd_scene load_steps=18 format=3 uid="uid://dqnxkhxuii7pt"]
 
-[ext_resource type="Script" path="res://scripts/enemies/enemies/SandWorm.cs" id="1_suit1"]
+[ext_resource type="Script" uid="uid://ve4jdvbk13n4" path="res://scripts/enemies/enemies/SandWorm.cs" id="1_suit1"]
 [ext_resource type="PackedScene" uid="uid://c2uo8wbugtra2" path="res://content/enemies/projectiles/sand_worm_projectile.tscn" id="2_l57kt"]
 [ext_resource type="Texture2D" uid="uid://niq1c5ey06vg" path="res://sprites/enemies/sand_worm/sand_worm.png" id="2_miif3"]
 [ext_resource type="Texture2D" uid="uid://baras1vr16e8p" path="res://sprites/enemies/cactus_spirit/sprite_cactus_spirit_shadow.tres" id="3_3fahg"]
 [ext_resource type="PackedScene" uid="uid://ci5smkuw5uefh" path="res://scenes/particles/sand_worm_pebble.tscn" id="3_b2r8g"]
 [ext_resource type="PackedScene" uid="uid://gy88aluvvwj2" path="res://scenes/particles/death_dust.tscn" id="3_hu1ss"]
 [ext_resource type="Material" uid="uid://b24jrbb127ayp" path="res://scripts/shaders/white.tres" id="6_anm72"]
-[ext_resource type="Script" path="res://scripts/visuals/SquashAndStretch.cs" id="8_bj14u"]
+[ext_resource type="Script" uid="uid://bn1v4dqwvvubx" path="res://scripts/visuals/SquashAndStretch.cs" id="8_bj14u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75mpk"]
 size = Vector2(16, 13)
@@ -70,10 +70,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1hjhs"]
 _data = {
-"RESET": SubResource("Animation_4he1a"),
-"attack": SubResource("Animation_mdkgu"),
-"idle": SubResource("Animation_hclil"),
-"telegraph_attack": SubResource("Animation_yypc7")
+&"RESET": SubResource("Animation_4he1a"),
+&"attack": SubResource("Animation_mdkgu"),
+&"idle": SubResource("Animation_hclil"),
+&"telegraph_attack": SubResource("Animation_yypc7")
 }
 
 [sub_resource type="Animation" id="Animation_b8sh0"]
@@ -110,8 +110,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bf7da"]
 _data = {
-"RESET": SubResource("Animation_b8sh0"),
-"hurt": SubResource("Animation_5qfe2")
+&"RESET": SubResource("Animation_b8sh0"),
+&"hurt": SubResource("Animation_5qfe2")
 }
 
 [node name="SandWorm" type="CharacterBody2D" node_paths=PackedStringArray("ProjectileOrigin", "FacingTransform", "VerticalTransform") groups=["Enemies"]]

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cgqrvew5jss7i"]
 
-[ext_resource type="Shader" path="res://scripts/shaders/foliage.gdshader" id="1_n61l5"]
+[ext_resource type="Shader" uid="uid://by4ys2qdtfqoe" path="res://scripts/shaders/foliage.gdshader" id="1_n61l5"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ybn0t"]
 frequency = 0.1511
@@ -17,7 +17,6 @@ noise = SubResource("FastNoiseLite_ybn0t")
 [resource]
 resource_local_to_scene = true
 shader = ExtResource("1_n61l5")
+shader_parameter/noise = SubResource("NoiseTexture3D_1wfq0")
 shader_parameter/speed = 0.02
 shader_parameter/noise_strength = 2.0
-shader_parameter/id = null
-shader_parameter/noise = SubResource("NoiseTexture3D_1wfq0")

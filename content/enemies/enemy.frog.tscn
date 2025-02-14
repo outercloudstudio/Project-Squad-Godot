@@ -1,13 +1,13 @@
 [gd_scene load_steps=17 format=3 uid="uid://bg2aer84qp5hq"]
 
-[ext_resource type="Script" path="res://scripts/enemies/enemies/Frog.cs" id="1_fc16d"]
+[ext_resource type="Script" uid="uid://brv1446tvb4ag" path="res://scripts/enemies/enemies/Frog.cs" id="1_fc16d"]
 [ext_resource type="PackedScene" uid="uid://bkbc2sdc7wnk8" path="res://content/enemies/projectiles/swamp_flower_projectile.tscn" id="2_b0xqs"]
 [ext_resource type="PackedScene" uid="uid://d32figfqedxfd" path="res://content/enemies/projectiles/swamp_flower_projectile_large.tscn" id="3_p6i0l"]
 [ext_resource type="PackedScene" uid="uid://gy88aluvvwj2" path="res://scenes/particles/death_dust.tscn" id="4_jm6oy"]
 [ext_resource type="Texture2D" uid="uid://cpbcv4axu3vfv" path="res://sprites/enemies/frog/frog.png" id="5_2wwk6"]
 [ext_resource type="Texture2D" uid="uid://baras1vr16e8p" path="res://sprites/enemies/cactus_spirit/sprite_cactus_spirit_shadow.tres" id="6_no1cb"]
 [ext_resource type="Material" uid="uid://b24jrbb127ayp" path="res://scripts/shaders/white.tres" id="7_tkgmv"]
-[ext_resource type="Script" path="res://scripts/visuals/SquashAndStretch.cs" id="8_m8hs4"]
+[ext_resource type="Script" uid="uid://bn1v4dqwvvubx" path="res://scripts/visuals/SquashAndStretch.cs" id="8_m8hs4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75mpk"]
 size = Vector2(10, 9)
@@ -62,9 +62,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1hjhs"]
 _data = {
-"RESET": SubResource("Animation_4he1a"),
-"idle": SubResource("Animation_wv887"),
-"jump": SubResource("Animation_yypc7")
+&"RESET": SubResource("Animation_4he1a"),
+&"idle": SubResource("Animation_wv887"),
+&"jump": SubResource("Animation_yypc7")
 }
 
 [sub_resource type="Animation" id="Animation_ducc8"]
@@ -125,8 +125,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4egld"]
 _data = {
-"RESET": SubResource("Animation_ducc8"),
-"hurt": SubResource("Animation_hh208")
+&"RESET": SubResource("Animation_ducc8"),
+&"hurt": SubResource("Animation_hh208")
 }
 
 [node name="Frog" type="CharacterBody2D" node_paths=PackedStringArray("ProjectileOrigin", "FacingTransform", "VerticalTransform") groups=["Enemies"]]

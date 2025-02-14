@@ -8,7 +8,7 @@ uniform vec2 size;
 
 vec3 get_nebula_value(float offset, vec2 uv, float time) {
 	float t = texture(noise, vec3(mod(uv / 1.5, 1.0), mod(time  * 0.08, 1.0))).r;
-	
+
 	return mix(color, color2, t);
 }
 
@@ -22,7 +22,7 @@ float random (vec2 st) {
 
 float star_value(float offset, vec2 uv, float time) {
 	float distortion = get_distortion(uv, time * 0.06);
-	
+
 	vec2 sample_position = floor(
 		(
 			vec2(
@@ -30,19 +30,19 @@ float star_value(float offset, vec2 uv, float time) {
 			) + distortion * 0.04
 		) * 300.0 + offset
 	) / 300.0;
-		
+
 	float threshold = 0.004;
-	
+
 	return max(0, random(sample_position) - 1.0 + threshold) / threshold;
 }
 
 void fragment() {
 	vec2 corrected_uv = UV * size / 300.0;
-	
+
 	float distortion = get_distortion(corrected_uv / 2.0, TIME * 0.05);
-	
+
 	vec2 distorted_uv = corrected_uv + distortion;
-	
+
 	float offset = 50.0;
 	float limit = 400.0;
 	float transition_speed = 0.2;
@@ -53,10 +53,10 @@ void fragment() {
 	float star_value2 = star_value(mod(time_base + offset, limit), corrected_uv, TIME);
 
 	vec3 nebula_value = get_nebula_value(0.0, corrected_uv, TIME);
-	
-	//COLOR = vec4(nebula_value, 1.0);	
-	
+
+	//COLOR = vec4(nebula_value, 1.0);
+
 	float mixed_value = mix(star_value1, star_value2, mod(TIME * transition_speed, 1.0));
-	
+
 	COLOR = vec4(mix(nebula_value, star_color, mixed_value), COLOR.a);
 }

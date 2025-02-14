@@ -1,10 +1,10 @@
 [gd_scene load_steps=24 format=3 uid="uid://b0awcwrhaggno"]
 
-[ext_resource type="Script" path="res://scripts/enemies/enemies/CactusSpirit.cs" id="1_f8484"]
+[ext_resource type="Script" uid="uid://djs814exocxm2" path="res://scripts/enemies/enemies/CactusSpirit.cs" id="1_f8484"]
 [ext_resource type="PackedScene" uid="uid://cf1alnlwhq4yq" path="res://content/enemies/projectiles/cactus_spirit_projectile.tscn" id="2_jmahl"]
 [ext_resource type="PackedScene" uid="uid://gy88aluvvwj2" path="res://scenes/particles/death_dust.tscn" id="2_yw3vg"]
 [ext_resource type="Texture2D" uid="uid://baras1vr16e8p" path="res://sprites/enemies/cactus_spirit/sprite_cactus_spirit_shadow.tres" id="3_v2rhn"]
-[ext_resource type="Script" path="res://scripts/visuals/SquashAndStretch.cs" id="8_xya6n"]
+[ext_resource type="Script" uid="uid://bn1v4dqwvvubx" path="res://scripts/visuals/SquashAndStretch.cs" id="8_xya6n"]
 [ext_resource type="Material" uid="uid://b24jrbb127ayp" path="res://scripts/shaders/white.tres" id="11_0cims"]
 [ext_resource type="Texture2D" uid="uid://c1b80yawm3idc" path="res://sprites/enemies/cactus_spirit/sprite_cactus_spirit_hurt.tres" id="12_5pasp"]
 [ext_resource type="Texture2D" uid="uid://b5riq8s65g6x4" path="res://sprites/enemies/cactus_spirit/sprite_cactus_spirit_idle.tres" id="13_16cnt"]
@@ -161,11 +161,11 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1hjhs"]
 _data = {
-"RESET": SubResource("Animation_4he1a"),
-"attack": SubResource("Animation_yypc7"),
-"idle": SubResource("Animation_wv887"),
-"run": SubResource("Animation_hclil"),
-"telegraph_attack": SubResource("Animation_n33jn")
+&"RESET": SubResource("Animation_4he1a"),
+&"attack": SubResource("Animation_yypc7"),
+&"idle": SubResource("Animation_wv887"),
+&"run": SubResource("Animation_hclil"),
+&"telegraph_attack": SubResource("Animation_n33jn")
 }
 
 [sub_resource type="Animation" id="Animation_ducc8"]
@@ -226,8 +226,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4egld"]
 _data = {
-"RESET": SubResource("Animation_ducc8"),
-"hurt": SubResource("Animation_hh208")
+&"RESET": SubResource("Animation_ducc8"),
+&"hurt": SubResource("Animation_hh208")
 }
 
 [node name="CactusSprite" type="CharacterBody2D" node_paths=PackedStringArray("ProjectileOrigin", "FacingTransform", "VerticalTransform") groups=["Enemies"]]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cx1vygvn5xxmn"]
 
-[ext_resource type="Script" path="res://scripts/items/trinkets/Trinket.cs" id="1_v7hcy"]
+[ext_resource type="Script" uid="uid://cs5rc70meduyf" path="res://scripts/items/trinkets/Trinket.cs" id="1_v7hcy"]
 [ext_resource type="Texture2D" uid="uid://ch2rtpbqqiytu" path="res://sprites/items/trinkets/trinket_duality.tres" id="3_v3udi"]
 
 [node name="DualityTrinket" type="Node2D"]

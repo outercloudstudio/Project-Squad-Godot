@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://isshtmwf2yet"]
 
-[ext_resource type="Script" path="res://scripts/projectiles/Projectile.cs" id="1_1r21i"]
+[ext_resource type="Script" uid="uid://l81hr057l30v" path="res://scripts/projectiles/Projectile.cs" id="1_1r21i"]
 [ext_resource type="Texture2D" uid="uid://bmyewggtsn5jv" path="res://sprites/items/projectiles/spear/projectile_spear_0.tres" id="2_6ia33"]
 [ext_resource type="Texture2D" uid="uid://yxalgm3vgxs1" path="res://sprites/items/projectiles/spear/projectile_spear_1.tres" id="3_w7264"]
 [ext_resource type="Texture2D" uid="uid://naj7mtu1skke" path="res://sprites/items/projectiles/spear/projectile_spear_2.tres" id="4_0lbyf"]
@@ -26,7 +26,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_88gx8"]
 _data = {
-"projectile_spear": SubResource("Animation_lxkvg")
+&"projectile_spear": SubResource("Animation_lxkvg")
 }
 
 [node name="SpearProjectile" type="Node2D"]

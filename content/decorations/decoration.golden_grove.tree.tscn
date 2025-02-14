@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bts585r45v1yk"]
 
-[ext_resource type="Script" path="res://scripts/projectiles/Destructable.cs" id="1_ght2y"]
+[ext_resource type="Script" uid="uid://bmtpej1kcl75q" path="res://scripts/projectiles/Destructable.cs" id="1_ght2y"]
 [ext_resource type="PackedScene" uid="uid://df8vafeme8j54" path="res://scenes/particles/destruction_leaf.tscn" id="2_bt0im"]
 [ext_resource type="Texture2D" uid="uid://dyf32ajmwuhjo" path="res://sprites/biomes/golden_grove/golden_grove_tileset.aseprite" id="3_50wy4"]
 

@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://c8fv5bopgj0rt"]
 
-[ext_resource type="Script" path="res://scripts/items/weapons/SimpleWeapon.cs" id="1_xkutt"]
+[ext_resource type="Script" uid="uid://pert0dvjwaot" path="res://scripts/items/weapons/SimpleWeapon.cs" id="1_xkutt"]
 [ext_resource type="PackedScene" uid="uid://dyxw7udidplhx" path="res://scenes/items/weapons/boomerange_projectile.tscn" id="2_8q7c8"]
-[ext_resource type="Script" path="res://scripts/items/weapons/SwingHandle.cs" id="3_xyy7f"]
-[ext_resource type="Script" path="res://scripts/visuals/CustomYSort.cs" id="4_2i0e6"]
+[ext_resource type="Script" uid="uid://35hi2j3y8c7c" path="res://scripts/items/weapons/SwingHandle.cs" id="3_xyy7f"]
+[ext_resource type="Script" uid="uid://b77muu5jrmqy2" path="res://scripts/visuals/CustomYSort.cs" id="4_2i0e6"]
 [ext_resource type="Texture2D" uid="uid://bxdt2d6bhuqgi" path="res://sprites/items/weapons/boomerang.tres" id="4_3y6u1"]
-[ext_resource type="Shader" path="res://scripts/shaders/highlight.gdshader" id="6_84oor"]
-[ext_resource type="Script" path="res://scripts/interactables/HighlightInteractable.cs" id="6_ccsp6"]
+[ext_resource type="Shader" uid="uid://b61o8y0oxe5h5" path="res://scripts/shaders/highlight.gdshader" id="6_84oor"]
+[ext_resource type="Script" uid="uid://ctgy8w24hqjv" path="res://scripts/interactables/HighlightInteractable.cs" id="6_ccsp6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t6p30"]
 shader = ExtResource("6_84oor")

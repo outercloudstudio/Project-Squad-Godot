@@ -1,33 +1,3 @@
-[gd_resource type="Resource" load_steps=18 format=3 uid="uid://domhx2cdlyijx"]
-
-[ext_resource type="PackedScene" uid="uid://d2ur7ou1ej4kh" path="res://content/rooms/room.golden_grove.final.tscn" id="1_7g6sj"]
-[ext_resource type="PackedScene" uid="uid://beqecpclw00yu" path="res://content/rooms/room.golden_grove.branch_end_right.tscn" id="1_ar7sx"]
-[ext_resource type="PackedScene" uid="uid://b68sh4bk3r2xu" path="res://content/rooms/room.golden_grove.branch_end_up.tscn" id="1_fymg1"]
-[ext_resource type="Resource" path="res://content/enemy_pools/enemy_pool_golden_grove.tres" id="1_wy0iy"]
-[ext_resource type="Script" path="res://scripts/rooms/Biome.cs" id="2_738dh"]
-[ext_resource type="PackedScene" uid="uid://dvk2gaueca40q" path="res://content/rooms/room.golden_grove.branch.tscn" id="3_n6ebb"]
-[ext_resource type="PackedScene" uid="uid://dd7sl7urrrec2" path="res://content/rooms/room.golden_grove.branch_end_left.tscn" id="3_njlk0"]
-[ext_resource type="PackedScene" uid="uid://ffl8gx6uilep" path="res://content/rooms/room.golden_grove.horizontal.tscn" id="4_wn2uy"]
-[ext_resource type="PackedScene" uid="uid://cp3sbf5tqfwat" path="res://content/rooms/room.golden_grove.turn_down_left.tscn" id="7_u3vyy"]
-[ext_resource type="PackedScene" uid="uid://bqwrpkp6iq417" path="res://content/rooms/room.golden_grove.turn_down_right.tscn" id="8_248k2"]
-[ext_resource type="PackedScene" uid="uid://b5ju8m1wplhot" path="res://content/rooms/room.golden_grove.plain.tscn" id="9_hyx7r"]
-[ext_resource type="PackedScene" uid="uid://chigyx814f8pv" path="res://content/rooms/room.golden_grove.turn_up_left.tscn" id="9_ulnol"]
-[ext_resource type="PackedScene" uid="uid://x8o862epxy8u" path="res://content/rooms/room.golden_grove.spawn.tscn" id="10_1mm5d"]
-[ext_resource type="PackedScene" uid="uid://g7ndguwjt3wv" path="res://content/rooms/room.golden_grove.turn_up_right.tscn" id="10_rtn0c"]
-[ext_resource type="PackedScene" uid="uid://c1wmer7gcmqyi" path="res://content/rooms/room.golden_grove.twist.tscn" id="11_tl4kh"]
-[ext_resource type="PackedScene" uid="uid://bdyh4cord6apk" path="res://content/rooms/room.golden_grove.branch_left.tscn" id="13_isw6w"]
-[ext_resource type="Resource" path="res://content/smart_tilesets/smart_tileset_golden_grove.tres" id="16_5nvfl"]
+[gd_resource type="Resource" format=3 uid="uid://domhx2cdlyijx"]
 
 [resource]
-script = ExtResource("2_738dh")
-Rooms = [ExtResource("9_hyx7r"), ExtResource("3_n6ebb"), ExtResource("4_wn2uy"), ExtResource("7_u3vyy"), ExtResource("8_248k2"), ExtResource("9_ulnol"), ExtResource("10_rtn0c"), ExtResource("11_tl4kh"), ExtResource("13_isw6w")]
-SpawnRooms = [ExtResource("10_1mm5d")]
-FinalRooms = [ExtResource("1_7g6sj")]
-FinalBranchRooms = [ExtResource("1_ar7sx"), ExtResource("1_fymg1"), ExtResource("3_njlk0")]
-BranchRanges = PackedVector2Array(1, 3, 4, 8, 9, 13)
-Level = 0
-Size = Vector2i(16, 16)
-BranchSize = Vector2i(3, 5)
-Color = Color(0, 0, 0, 0)
-EnemyPool = ExtResource("1_wy0iy")
-Tileset = ExtResource("16_5nvfl")

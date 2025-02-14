@@ -1,17 +1,19 @@
 [gd_scene load_steps=7 format=3 uid="uid://dxbvcafv66x8o"]
 
-[ext_resource type="Script" path="res://scripts/Altar.cs" id="1_agydh"]
 [ext_resource type="Texture2D" uid="uid://da2ersq78k35r" path="res://sprites/rooms/altar/altar.tres" id="2_uc1wc"]
 [ext_resource type="Texture2D" uid="uid://dyf32ajmwuhjo" path="res://sprites/biomes/golden_grove/golden_grove_tileset.aseprite" id="3_a3dw8"]
 [ext_resource type="Texture2D" uid="uid://cgr6vph3adonm" path="res://sprites/rooms/altar/altar_activated.tres" id="3_nnu1l"]
-[ext_resource type="Script" path="res://scripts/visuals/SquashAndStretch.cs" id="4_kgwns"]
+[ext_resource type="Script" uid="uid://bn1v4dqwvvubx" path="res://scripts/visuals/SquashAndStretch.cs" id="4_kgwns"]
+
+[sub_resource type="Resource" id="Resource_7ynsc"]
+metadata/__load_path__ = "res://scripts/Altar.cs"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_im473"]
 
 [node name="Altar" type="Node2D" node_paths=PackedStringArray("ActivateSquashAndStretch")]
 y_sort_enabled = true
 position = Vector2(0, -57)
-script = ExtResource("1_agydh")
+script = SubResource("Resource_7ynsc")
 ActivateSquashAndStretch = NodePath("ActivateSquashAndStretch")
 DeactivatedTexture = ExtResource("2_uc1wc")
 ActivatedTexture = ExtResource("3_nnu1l")

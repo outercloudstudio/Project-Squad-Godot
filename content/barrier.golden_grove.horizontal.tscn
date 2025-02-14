@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b7trkiwn6g3eq"]
 
 [ext_resource type="PackedScene" uid="uid://bts585r45v1yk" path="res://content/decorations/decoration.golden_grove.tree.tscn" id="1_6p0ke"]
-[ext_resource type="Script" path="res://scripts/components/Barrier.cs" id="1_ciosh"]
+[ext_resource type="Script" uid="uid://nrqvv7eki8ps" path="res://scripts/components/Barrier.cs" id="1_ciosh"]
 [ext_resource type="PackedScene" uid="uid://by3m0xgldgo6h" path="res://scenes/decorations/golden_grove/bush.tscn" id="3_wdxc6"]
 [ext_resource type="Texture2D" uid="uid://dyf32ajmwuhjo" path="res://sprites/biomes/golden_grove/golden_grove_tileset.aseprite" id="4_ndfii"]
 

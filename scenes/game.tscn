@@ -1,22 +1,22 @@
 [gd_scene load_steps=26 format=3 uid="uid://cmcc8d5h27qfv"]
 
-[ext_resource type="Script" path="res://scripts/Game.cs" id="1_sq6vk"]
+[ext_resource type="Script" uid="uid://cq443tq8wachj" path="res://scripts/Game.cs" id="1_sq6vk"]
 [ext_resource type="PackedScene" uid="uid://01apx66cyccg" path="res://scenes/player.tscn" id="2_nxqs3"]
-[ext_resource type="Script" path="res://scripts/networking/NetworkManager.cs" id="3_ix04k"]
+[ext_resource type="Script" uid="uid://bdb75wq8u0wjl" path="res://scripts/networking/NetworkManager.cs" id="3_ix04k"]
 [ext_resource type="PackedScene" uid="uid://c5284u6x7my5h" path="res://scenes/ui/game_ui.tscn" id="3_s7l32"]
-[ext_resource type="Script" path="res://scripts/visuals/Camera.cs" id="4_encmg"]
-[ext_resource type="Shader" path="res://scripts/shaders/etherial.gdshader" id="5_4da55"]
+[ext_resource type="Script" uid="uid://brsjsychdhc6k" path="res://scripts/visuals/Camera.cs" id="4_encmg"]
+[ext_resource type="Shader" uid="uid://bt8f7xh3pr25p" path="res://scripts/shaders/etherial.gdshader" id="5_4da55"]
 [ext_resource type="AudioStream" uid="uid://dey6knsoqrxff" path="res://sfx/combined/hurt_1.wav" id="6_c3uc0"]
 [ext_resource type="PackedScene" uid="uid://dpb2vij815fs3" path="res://scenes/ui/main_menu.tscn" id="7_gnxd7"]
 [ext_resource type="AudioStream" uid="uid://clof1mxacmnvy" path="res://sfx/combined/swing_1.wav" id="7_yuo4k"]
 [ext_resource type="AudioStream" uid="uid://dm71qtyxmxx5" path="res://sfx/combined/swing_2.wav" id="8_6wno2"]
 [ext_resource type="AudioStream" uid="uid://bt3vmiqn5dhqu" path="res://music/Theme 4.wav" id="8_y68pd"]
-[ext_resource type="Script" path="res://scripts/interactables/Interactables.cs" id="9_t151n"]
+[ext_resource type="Script" uid="uid://65jcsb6gmfio" path="res://scripts/interactables/Interactables.cs" id="9_t151n"]
 [ext_resource type="Texture2D" uid="uid://c1q4etprb2fu8" path="res://sprites/particles/leaf_dark.tres" id="10_agqbr"]
-[ext_resource type="Script" path="res://scripts/helpful/Delay.cs" id="13_l8fec"]
-[ext_resource type="Script" path="res://scripts/world/World.cs" id="15_fxnfr"]
-[ext_resource type="Script" path="res://scripts/world/WorldGenerator.cs" id="18_7d1a5"]
-[ext_resource type="Script" path="res://scripts/Audio.cs" id="22_ko2sk"]
+[ext_resource type="Script" uid="uid://brcsk44hxlb5n" path="res://scripts/helpful/Delay.cs" id="13_l8fec"]
+[ext_resource type="Script" uid="uid://04r5uniu1ji6" path="res://scripts/world/World.cs" id="15_fxnfr"]
+[ext_resource type="Script" uid="uid://wbs6pcf7o6f0" path="res://scripts/world/WorldGenerator.cs" id="18_7d1a5"]
+[ext_resource type="Script" uid="uid://d0vppy4h3xelb" path="res://scripts/Audio.cs" id="22_ko2sk"]
 [ext_resource type="AudioStream" uid="uid://cx0s4ifhqsfxk" path="res://sfx/library/sfx_sounds_impact1.wav" id="23_8eois"]
 [ext_resource type="AudioStream" uid="uid://d4k7170tc0for" path="res://sfx/library/death_1.wav" id="24_0d0le"]
 [ext_resource type="Texture2D" uid="uid://bi33f1wk8abo6" path="res://sprites/items/trinkets/trinket_swiftness.tres" id="26_dnkch"]
@@ -52,8 +52,8 @@ shader = ExtResource("5_4da55")
 shader_parameter/color = Color(0.0392157, 0.0235294, 0.0862745, 1)
 shader_parameter/color2 = Color(0, 0, 0, 1)
 shader_parameter/star_color = Color(0.741176, 0.796078, 1, 1)
-shader_parameter/size = Vector2(1920, 1080)
 shader_parameter/noise = SubResource("NoiseTexture3D_or4pi")
+shader_parameter/size = Vector2(1920, 1080)
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true

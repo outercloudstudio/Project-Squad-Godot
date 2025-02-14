@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://ctwrqefjr5llm"]
 
-[ext_resource type="Script" path="res://scripts/enemies/enemies/Crow.cs" id="1_qxf1c"]
+[ext_resource type="Script" uid="uid://dgjeimhq00ahv" path="res://scripts/enemies/enemies/Crow.cs" id="1_qxf1c"]
 [ext_resource type="Texture2D" uid="uid://b6hd8oagbgaod" path="res://sprites/enemies/crow/crow_0.tres" id="2_jc2w3"]
 [ext_resource type="Material" uid="uid://b24jrbb127ayp" path="res://scripts/shaders/white.tres" id="2_u8mw0"]
 [ext_resource type="Texture2D" uid="uid://cxg1dlera11ar" path="res://sprites/enemies/medium_shadow.tres" id="3_0hng1"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://gy88aluvvwj2" path="res://scenes/particles/death_dust.tscn" id="9_hbt65"]
 [ext_resource type="Texture2D" uid="uid://b4naejnmh5svi" path="res://sprites/enemies/crow/crow_1.tres" id="9_s3qqv"]
 [ext_resource type="Texture2D" uid="uid://erjyvt1spirj" path="res://sprites/enemies/crow/crow_hurt.tres" id="10_hpfxe"]
-[ext_resource type="Script" path="res://scripts/visuals/SquashAndStretch.cs" id="11_kuwtc"]
+[ext_resource type="Script" uid="uid://bn1v4dqwvvubx" path="res://scripts/visuals/SquashAndStretch.cs" id="11_kuwtc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75mpk"]
 size = Vector2(16, 14)
@@ -79,9 +79,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wn2uj"]
 _data = {
-"RESET": SubResource("Animation_5eo1p"),
-"aggressive": SubResource("Animation_o35v4"),
-"scared": SubResource("Animation_pen70")
+&"RESET": SubResource("Animation_5eo1p"),
+&"aggressive": SubResource("Animation_o35v4"),
+&"scared": SubResource("Animation_pen70")
 }
 
 [sub_resource type="Animation" id="Animation_3akmf"]
@@ -142,8 +142,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c4avd"]
 _data = {
-"RESET": SubResource("Animation_3akmf"),
-"hurt": SubResource("Animation_8sr8t")
+&"RESET": SubResource("Animation_3akmf"),
+&"hurt": SubResource("Animation_8sr8t")
 }
 
 [node name="Crow" type="CharacterBody2D" node_paths=PackedStringArray("ProjectileOrigin", "FacingTransform", "VerticalTransform") groups=["Enemies"]]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://biycaes0pxrav"]
 
-[ext_resource type="Script" path="res://scripts/enemies/enemies/Slime.cs" id="1_6kkrf"]
+[ext_resource type="Script" uid="uid://bya0yr82efmtb" path="res://scripts/enemies/enemies/Slime.cs" id="1_6kkrf"]
 [ext_resource type="PackedScene" uid="uid://dq15cgoix34cv" path="res://content/enemies/projectiles/slime_projectile.tscn" id="2_4goc7"]
 [ext_resource type="Texture2D" uid="uid://didmjldh3h46f" path="res://sprites/enemies/slime/slime.tres" id="2_hbhsd"]
 [ext_resource type="Texture2D" uid="uid://cxg1dlera11ar" path="res://sprites/enemies/medium_shadow.tres" id="3_yrvle"]
-[ext_resource type="Script" path="res://scripts/visuals/SquashAndStretch.cs" id="8_j3im5"]
+[ext_resource type="Script" uid="uid://bn1v4dqwvvubx" path="res://scripts/visuals/SquashAndStretch.cs" id="8_j3im5"]
 [ext_resource type="Texture2D" uid="uid://8aigpuhoomet" path="res://sprites/enemies/slime/slime_hurt.tres" id="10_th6ka"]
 [ext_resource type="PackedScene" uid="uid://gy88aluvvwj2" path="res://scenes/particles/death_dust.tscn" id="11_7c4yd"]
 [ext_resource type="Material" uid="uid://b24jrbb127ayp" path="res://scripts/shaders/white.tres" id="11_ywes5"]
@@ -62,9 +62,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8rhhb"]
 _data = {
-"RESET": SubResource("Animation_8abv2"),
-"idle": SubResource("Animation_peq8v"),
-"jump": SubResource("Animation_3hqsu")
+&"RESET": SubResource("Animation_8abv2"),
+&"idle": SubResource("Animation_peq8v"),
+&"jump": SubResource("Animation_3hqsu")
 }
 
 [sub_resource type="Animation" id="Animation_4he1a"]
@@ -126,8 +126,8 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1hjhs"]
 resource_local_to_scene = true
 _data = {
-"RESET": SubResource("Animation_4he1a"),
-"hurt": SubResource("Animation_pl1hr")
+&"RESET": SubResource("Animation_4he1a"),
+&"hurt": SubResource("Animation_pl1hr")
 }
 
 [node name="Slime" type="CharacterBody2D" node_paths=PackedStringArray("ProjectileOrigin", "FacingTransform", "VerticalTransform") groups=["Enemies"]]

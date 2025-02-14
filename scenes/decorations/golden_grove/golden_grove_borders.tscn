@@ -1,14 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://dluhdh470aipx"]
+[gd_scene load_steps=5 format=3 uid="uid://dluhdh470aipx"]
 
-[ext_resource type="Script" path="res://scripts/rooms/Paralax.cs" id="1_h47jy"]
 [ext_resource type="PackedScene" uid="uid://dbomho6lgc6tg" path="res://scenes/decorations/golden_grove/golden_grove_border_edge.tscn" id="3_bbyen"]
 [ext_resource type="Texture2D" uid="uid://q8w05kax16eb" path="res://sprites/biomes/golden_grove/tree_border.tres" id="3_ysp01"]
+
+[sub_resource type="Resource" id="Resource_slhsc"]
+metadata/__load_path__ = "res://scripts/rooms/Paralax.cs"
+
+[sub_resource type="Resource" id="Resource_yi6cs"]
+metadata/__load_path__ = "res://scripts/rooms/Paralax.cs"
 
 [node name="Borders" type="Node2D"]
 z_index = 10
 
 [node name="Paralax" type="Node2D" parent="."]
-script = ExtResource("1_h47jy")
+script = SubResource("Resource_slhsc")
 Factor = 0.063
 
 [node name="Origin" type="Node2D" parent="Paralax"]
@@ -23,7 +28,7 @@ texture = ExtResource("3_ysp01")
 
 [node name="Paralax2" type="Node2D" parent="."]
 z_index = 1
-script = ExtResource("1_h47jy")
+script = SubResource("Resource_yi6cs")
 Factor = 0.126
 
 [node name="Origin" type="Node2D" parent="Paralax2"]

@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://cyh55k213w7y7"]
 
-[ext_resource type="Script" path="res://scripts/items/weapons/SimpleWeapon.cs" id="1_sjj6t"]
+[ext_resource type="Script" uid="uid://pert0dvjwaot" path="res://scripts/items/weapons/SimpleWeapon.cs" id="1_sjj6t"]
 [ext_resource type="PackedScene" uid="uid://bgg04u0yi86gl" path="res://scenes/items/weapons/sword_projectile.tscn" id="2_cwddm"]
-[ext_resource type="Script" path="res://scripts/items/weapons/SwingHandle.cs" id="3_18ogc"]
+[ext_resource type="Script" uid="uid://35hi2j3y8c7c" path="res://scripts/items/weapons/SwingHandle.cs" id="3_18ogc"]
 [ext_resource type="Texture2D" uid="uid://bpp7fxsmgxs0v" path="res://sprites/items/weapons/sword.tres" id="4_bbk84"]
-[ext_resource type="Script" path="res://scripts/visuals/CustomYSort.cs" id="4_w0o7s"]
-[ext_resource type="Script" path="res://scripts/interactables/HighlightInteractable.cs" id="6_jc1qe"]
-[ext_resource type="Shader" path="res://scripts/shaders/highlight.gdshader" id="7_yq77b"]
+[ext_resource type="Script" uid="uid://b77muu5jrmqy2" path="res://scripts/visuals/CustomYSort.cs" id="4_w0o7s"]
+[ext_resource type="Script" uid="uid://ctgy8w24hqjv" path="res://scripts/interactables/HighlightInteractable.cs" id="6_jc1qe"]
+[ext_resource type="Shader" uid="uid://b61o8y0oxe5h5" path="res://scripts/shaders/highlight.gdshader" id="7_yq77b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3k5r0"]
 shader = ExtResource("7_yq77b")

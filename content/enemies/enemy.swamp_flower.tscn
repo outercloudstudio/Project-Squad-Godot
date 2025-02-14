@@ -1,13 +1,13 @@
 [gd_scene load_steps=18 format=3 uid="uid://cjbg2o4u22hyt"]
 
-[ext_resource type="Script" path="res://scripts/enemies/enemies/SwampFlower.cs" id="1_85mgc"]
+[ext_resource type="Script" uid="uid://bpgs5h3n5d0u4" path="res://scripts/enemies/enemies/SwampFlower.cs" id="1_85mgc"]
 [ext_resource type="PackedScene" uid="uid://bkbc2sdc7wnk8" path="res://content/enemies/projectiles/swamp_flower_projectile.tscn" id="2_1htr2"]
 [ext_resource type="PackedScene" uid="uid://d32figfqedxfd" path="res://content/enemies/projectiles/swamp_flower_projectile_large.tscn" id="3_eef6p"]
 [ext_resource type="PackedScene" uid="uid://gy88aluvvwj2" path="res://scenes/particles/death_dust.tscn" id="3_picut"]
 [ext_resource type="Texture2D" uid="uid://cyff4t1v1my0v" path="res://sprites/enemies/swamp_flower/swamp_flower.png" id="4_anw82"]
 [ext_resource type="Texture2D" uid="uid://baras1vr16e8p" path="res://sprites/enemies/cactus_spirit/sprite_cactus_spirit_shadow.tres" id="5_vleao"]
 [ext_resource type="Material" uid="uid://b24jrbb127ayp" path="res://scripts/shaders/white.tres" id="12_cv88w"]
-[ext_resource type="Script" path="res://scripts/visuals/SquashAndStretch.cs" id="13_kg4pm"]
+[ext_resource type="Script" uid="uid://bn1v4dqwvvubx" path="res://scripts/visuals/SquashAndStretch.cs" id="13_kg4pm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75mpk"]
 size = Vector2(10, 9)
@@ -66,10 +66,10 @@ length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1hjhs"]
 _data = {
-"RESET": SubResource("Animation_4he1a"),
-"attack": SubResource("Animation_yypc7"),
-"idle": SubResource("Animation_wv887"),
-"telegraph_attack": SubResource("Animation_n33jn")
+&"RESET": SubResource("Animation_4he1a"),
+&"attack": SubResource("Animation_yypc7"),
+&"idle": SubResource("Animation_wv887"),
+&"telegraph_attack": SubResource("Animation_n33jn")
 }
 
 [sub_resource type="Animation" id="Animation_ducc8"]
@@ -130,8 +130,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4egld"]
 _data = {
-"RESET": SubResource("Animation_ducc8"),
-"hurt": SubResource("Animation_hh208")
+&"RESET": SubResource("Animation_ducc8"),
+&"hurt": SubResource("Animation_hh208")
 }
 
 [node name="SwampFlower" type="CharacterBody2D" node_paths=PackedStringArray("ProjectileOrigin", "FacingTransform", "VerticalTransform") groups=["Enemies"]]

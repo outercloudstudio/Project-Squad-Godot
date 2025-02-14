@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://cmepyc6f04lax"]
 
-[ext_resource type="Script" path="res://addons/room_tool/RoomLayout.cs" id="1_y123u"]
+[ext_resource type="Script" uid="uid://bhdi1maabkpl1" path="res://addons/room_tool/RoomLayout.cs" id="1_y123u"]
 
 [resource]
 script = ExtResource("1_y123u")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://dpb2vij815fs3"]
 
-[ext_resource type="Script" path="res://scripts/ui/MainMenu.cs" id="1_rc6ko"]
+[ext_resource type="Script" uid="uid://f1r8oc4ienyb" path="res://scripts/ui/MainMenu.cs" id="1_rc6ko"]
 [ext_resource type="PackedScene" uid="uid://cv663jsc3lwub" path="res://scenes/items/equipment/hair1.tscn" id="2_rx0vu"]
 [ext_resource type="PackedScene" uid="uid://4ylk2aoq7at6" path="res://scenes/items/equipment/OG_hat.tscn" id="3_qf61c"]
 [ext_resource type="PackedScene" uid="uid://bfo055prag30g" path="res://scenes/items/equipment/shirt1.tscn" id="4_m04t5"]
@@ -88,8 +88,8 @@ shader = SubResource("Shader_jjjwg")
 shader_parameter/color = Color(0.0392157, 0.0235294, 0.0862745, 1)
 shader_parameter/color2 = Color(0, 0, 0, 1)
 shader_parameter/star_color = Color(0.741176, 0.796078, 1, 1)
-shader_parameter/size = Vector2(480, 270)
 shader_parameter/noise = SubResource("NoiseTexture3D_or4pi")
+shader_parameter/size = Vector2(480, 270)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bdgbu"]
 atlas = ExtResource("7_ecgaj")
