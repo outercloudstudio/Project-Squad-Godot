@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxak84j7xmugm"]
+[gd_scene load_steps=7 format=3 uid="uid://dxak84j7xmugm"]
 
 [ext_resource type="Script" uid="uid://bmtpej1kcl75q" path="res://scripts/projectiles/Destructable.cs" id="1_6iib1"]
 [ext_resource type="PackedScene" uid="uid://df8vafeme8j54" path="res://scenes/particles/destruction_leaf.tscn" id="2_p07or"]
 [ext_resource type="Texture2D" uid="uid://dyf32ajmwuhjo" path="res://sprites/biomes/golden_grove/golden_grove_tileset.aseprite" id="3_6kd8c"]
+[ext_resource type="Material" uid="uid://cgqrvew5jss7i" path="res://materials/material_foliage_background.tres" id="3_33jgd"]
+[ext_resource type="Script" uid="uid://goeeq6uf3a5g" path="res://scripts/visuals/RandomShaderSprite.cs" id="5_f6wyd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfw76"]
 size = Vector2(18, 10)
@@ -16,11 +18,13 @@ Particle = ExtResource("2_p07or")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
+material = ExtResource("3_33jgd")
 position = Vector2(0, 2)
 texture = ExtResource("3_6kd8c")
 offset = Vector2(0, -6)
 region_enabled = true
 region_rect = Rect2(216, 120, 20, 18)
+script = ExtResource("5_f6wyd")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -6

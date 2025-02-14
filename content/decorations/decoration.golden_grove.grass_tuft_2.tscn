@@ -1,18 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce5lu8b484uwp"]
+[gd_scene load_steps=4 format=3 uid="uid://ce5lu8b484uwp"]
 
+[ext_resource type="Material" uid="uid://cgqrvew5jss7i" path="res://materials/material_foliage_background.tres" id="1_1obxs"]
 [ext_resource type="Texture2D" uid="uid://dyf32ajmwuhjo" path="res://sprites/biomes/golden_grove/golden_grove_tileset.aseprite" id="1_v1tdx"]
+[ext_resource type="Script" uid="uid://goeeq6uf3a5g" path="res://scripts/visuals/RandomShaderSprite.cs" id="3_eg2pa"]
 
 [node name="BorderGrassTuft2" type="Node2D"]
 y_sort_enabled = true
 
 [node name="Grass3" type="Sprite2D" parent="."]
 y_sort_enabled = true
+material = ExtResource("1_1obxs")
 position = Vector2(-7, 3)
 texture = ExtResource("1_v1tdx")
 offset = Vector2(0, -4)
 flip_h = true
 region_enabled = true
 region_rect = Rect2(134, 88, 12, 8)
+script = ExtResource("3_eg2pa")
 
 [node name="Shadow9" type="Sprite2D" parent="."]
 z_index = -6
@@ -25,6 +29,7 @@ region_rect = Rect2(135, 112, 8, 4)
 
 [node name="Grass4" type="Sprite2D" parent="."]
 y_sort_enabled = true
+material = ExtResource("1_1obxs")
 position = Vector2(5, -2)
 scale = Vector2(-1, 1)
 texture = ExtResource("1_v1tdx")
@@ -32,6 +37,7 @@ offset = Vector2(0, -4)
 flip_h = true
 region_enabled = true
 region_rect = Rect2(134, 88, 12, 8)
+script = ExtResource("3_eg2pa")
 
 [node name="Shadow10" type="Sprite2D" parent="."]
 z_index = -6

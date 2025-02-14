@@ -1,18 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://caj7t46v4f7ds"]
+[gd_scene load_steps=7 format=3 uid="uid://caj7t46v4f7ds"]
 
 [ext_resource type="Texture2D" uid="uid://dyf32ajmwuhjo" path="res://sprites/biomes/golden_grove/golden_grove_tileset.aseprite" id="1_w68oe"]
-[ext_resource type="PackedScene" uid="uid://by3m0xgldgo6h" path="res://scenes/decorations/golden_grove/bush.tscn" id="2_cmq48"]
+[ext_resource type="Material" uid="uid://cgqrvew5jss7i" path="res://materials/material_foliage_background.tres" id="1_whx7q"]
+[ext_resource type="Script" uid="uid://goeeq6uf3a5g" path="res://scripts/visuals/RandomShaderSprite.cs" id="3_yitwy"]
+[ext_resource type="Script" uid="uid://bmtpej1kcl75q" path="res://scripts/projectiles/Destructable.cs" id="4_yitwy"]
+[ext_resource type="PackedScene" uid="uid://df8vafeme8j54" path="res://scenes/particles/destruction_leaf.tscn" id="5_vmyb7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfw76"]
+size = Vector2(18, 10)
 
 [node name="Bush_2" type="Node2D"]
 y_sort_enabled = true
 
 [node name="Grass6" type="Sprite2D" parent="."]
 y_sort_enabled = true
+material = ExtResource("1_whx7q")
 position = Vector2(9, 4)
 texture = ExtResource("1_w68oe")
 offset = Vector2(0, -4)
 region_enabled = true
 region_rect = Rect2(134, 88, 12, 8)
+script = ExtResource("3_yitwy")
 
 [node name="Shadow11" type="Sprite2D" parent="."]
 z_index = -6
@@ -23,4 +31,33 @@ offset = Vector2(0, -4)
 region_enabled = true
 region_rect = Rect2(135, 112, 8, 4)
 
-[node name="Bush2" parent="." instance=ExtResource("2_cmq48")]
+[node name="Bush2" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("4_yitwy")
+Particle = ExtResource("5_vmyb7")
+
+[node name="Sprite" type="Sprite2D" parent="Bush2"]
+y_sort_enabled = true
+material = ExtResource("1_whx7q")
+position = Vector2(0, 2)
+texture = ExtResource("1_w68oe")
+offset = Vector2(0, -6)
+region_enabled = true
+region_rect = Rect2(216, 120, 20, 18)
+script = ExtResource("3_yitwy")
+
+[node name="Shadow" type="Sprite2D" parent="Bush2"]
+z_index = -6
+y_sort_enabled = true
+position = Vector2(-1, 5)
+texture = ExtResource("1_w68oe")
+offset = Vector2(0, -8)
+region_enabled = true
+region_rect = Rect2(236, 124, 20, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bush2"]
+visible = false
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_gfw76")
