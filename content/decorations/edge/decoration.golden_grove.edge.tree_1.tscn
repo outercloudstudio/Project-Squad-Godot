@@ -1,17 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqlgfseomeeg6"]
+[gd_scene load_steps=4 format=3 uid="uid://bqlgfseomeeg6"]
 
 [ext_resource type="Texture2D" uid="uid://dyf32ajmwuhjo" path="res://sprites/biomes/golden_grove/golden_grove_tileset.aseprite" id="1_vypey"]
+[ext_resource type="Material" uid="uid://cgqrvew5jss7i" path="res://materials/material_foliage_background.tres" id="2_a17o8"]
+[ext_resource type="Script" path="res://scripts/visuals/RandomShaderSprite.cs" id="3_4tqmc"]
 
 [node name="Tree" type="Node2D"]
 z_index = 20
 y_sort_enabled = true
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Trunk" type="Sprite2D" parent="."]
 y_sort_enabled = true
 texture = ExtResource("1_vypey")
 offset = Vector2(-1, -33)
 region_enabled = true
 region_rect = Rect2(331, 15, 50, 68)
+
+[node name="Leaves" type="Sprite2D" parent="."]
+y_sort_enabled = true
+material = ExtResource("2_a17o8")
+texture = ExtResource("1_vypey")
+offset = Vector2(-1, -33)
+region_enabled = true
+region_rect = Rect2(469, 11, 58, 76)
+script = ExtResource("3_4tqmc")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -6
