@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -12,6 +13,8 @@ public partial class World : Node2D, NetworkPointUser {
     public TileMapLayer ShadowsTileMapLayer;
     public TileMapLayer FloorsTileMapLayer;
     public TileMapLayer GrassTileMapLayer;
+
+    public static Action<Rect2> RoomUnloaded;
 
     public NetworkPoint NetworkPoint { get; set; } = new NetworkPoint();
 
@@ -54,6 +57,7 @@ public partial class World : Node2D, NetworkPointUser {
 
     public static void Start() {
         Me._loadedRooms = new Dictionary<LoadableRoom, float>();
+        Me._unloadedRooms = new List<LoadableRoom>();
 
         Me._activeBiome = Me._biomes[0];
 
@@ -71,10 +75,8 @@ public partial class World : Node2D, NetworkPointUser {
     public static void Cleanup() {
         foreach (LoadableRoom loadableRoom in Me._loadedRooms.Keys) {
             loadableRoom.Unload();
+            RoomUnloaded.Invoke(new Rect2(loadableRoom.RoomPlacement.GetTopLeftBound() * 16f, (loadableRoom.RoomPlacement.GetBottomRightBound() - loadableRoom.RoomPlacement.GetTopLeftBound()) * 16f));
         }
-
-        Me._loadedRooms = new Dictionary<LoadableRoom, float>();
-        Me._unloadedRooms = new List<LoadableRoom>();
     }
 
     private void Load(Vector2 location) {
@@ -142,6 +144,8 @@ public partial class World : Node2D, NetworkPointUser {
         _unloadedRooms.Add(room);
 
         room.Unload();
+
+        RoomUnloaded.Invoke(new Rect2(room.RoomPlacement.GetTopLeftBound() * 16f, (room.RoomPlacement.GetBottomRightBound() - room.RoomPlacement.GetTopLeftBound()) * 16f));
     }
 
     public void SpawnEnemyRpc(Message message) {

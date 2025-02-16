@@ -55,6 +55,8 @@ public partial class Enemy : CharacterBody2D, Damageable, NetworkPointUser {
         _stateMachine._Ready();
 
         _damageNumber = ResourceLoader.Load<PackedScene>("res://scenes/damage_number.tscn");
+
+        World.RoomUnloaded += Unload;
     }
 
     public override void _Process(double delta) {
@@ -69,6 +71,12 @@ public partial class Enemy : CharacterBody2D, Damageable, NetworkPointUser {
         if (!Dead) Knockback = Knockback.Lerp(Vector2.Zero, (float)delta * 12f);
 
         _stateMachine._PhysicsProcess(delta);
+    }
+
+    public override void _Notification(int what) {
+        if (what == NotificationPredelete) {
+            World.RoomUnloaded -= Unload;
+        }
     }
 
     public virtual void AddStates() {
@@ -207,5 +215,11 @@ public partial class Enemy : CharacterBody2D, Damageable, NetworkPointUser {
 
     public void Face(Vector2 position) {
         FacingTransform.Scale = new Vector2(position.X > GlobalPosition.X ? 1f : -1f, 1f);
+    }
+
+    private void Unload(Rect2 roomRect) {
+        if (!roomRect.HasPoint(GlobalPosition)) return;
+
+        QueueFree();
     }
 }
