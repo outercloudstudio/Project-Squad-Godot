@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bmtpej1kcl75q" path="res://scripts/projectiles/Destructable.cs" id="1_ght2y"]
 [ext_resource type="PackedScene" uid="uid://df8vafeme8j54" path="res://scenes/particles/destruction_leaf.tscn" id="2_bt0im"]
 [ext_resource type="Texture2D" uid="uid://dyf32ajmwuhjo" path="res://sprites/biomes/golden_grove/golden_grove_tileset.aseprite" id="3_50wy4"]
-[ext_resource type="Material" uid="uid://cgqrvew5jss7i" path="res://materials/material_foliage_background.tres" id="3_fjy8w"]
+[ext_resource type="Material" uid="uid://buq3edolbv7ba" path="res://materials/material_foliage_forground.tres" id="3_fjy8w"]
 [ext_resource type="Script" uid="uid://goeeq6uf3a5g" path="res://scripts/visuals/RandomShaderSprite.cs" id="5_8ukbt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfw76"]
@@ -24,7 +24,7 @@ position = Vector2(0, 8)
 texture = ExtResource("3_50wy4")
 offset = Vector2(0, -15)
 region_enabled = true
-region_rect = Rect2(170, 137, 26, 34)
+region_rect = Rect2(168, 135, 30, 38)
 script = ExtResource("5_8ukbt")
 
 [node name="Shadow" type="Sprite2D" parent="."]

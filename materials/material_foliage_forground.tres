@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://buq3edolbv7ba"]
+
+[ext_resource type="Shader" uid="uid://by4ys2qdtfqoe" path="res://scripts/shaders/foliage.gdshader" id="1_ehbbq"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ybn0t"]
+frequency = 0.1
+fractal_octaves = 3
+fractal_lacunarity = 0.86
+fractal_gain = 0.17
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_1obxs"]
+seamless = true
+seamless_blend_skirt = 0.4
+noise = SubResource("FastNoiseLite_ybn0t")
+
+[resource]
+shader = ExtResource("1_ehbbq")
+shader_parameter/noise = SubResource("NoiseTexture3D_1obxs")
+shader_parameter/speed = 0.04
+shader_parameter/noise_strength = 4.0

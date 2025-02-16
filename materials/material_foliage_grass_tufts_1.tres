@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bc24rx4gvmc2s"]
+
+[ext_resource type="Shader" uid="uid://dwroop5mmo0n3" path="res://scripts/shaders/foliage_grounded.gdshader" id="1_fpjy3"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ybn0t"]
+frequency = 0.1511
+fractal_octaves = 1
+fractal_lacunarity = 0.515
+fractal_gain = 0.325
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_fpjy3"]
+seamless = true
+seamless_blend_skirt = 0.4
+noise = SubResource("FastNoiseLite_ybn0t")
+
+[resource]
+shader = ExtResource("1_fpjy3")
+shader_parameter/noise = SubResource("NoiseTexture3D_fpjy3")
+shader_parameter/speed = 0.02
+shader_parameter/noise_strength = 2.0
+shader_parameter/wave_factor = 0.1
+shader_parameter/wave_start = 93.88
