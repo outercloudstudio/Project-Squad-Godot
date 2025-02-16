@@ -30,7 +30,10 @@ public class AssetManager {
 
         content.ListDirBegin();
         string entryName = content.GetNext();
+
         while (entryName != "") {
+            if (entryName.EndsWith(".remap")) entryName = entryName.Substring(0, entryName.Length - ".remap".Length);
+
             string entryPath = Path.Join(path, entryName);
 
             if (content.CurrentIsDir()) {
