@@ -11,12 +11,14 @@
             "id": "f9ea6fe717c3dc6a",
             "type": "leaf",
             "state": {
-              "type": "kanban",
+              "type": "markdown",
               "state": {
-                "file": "Planning/Beta D.md"
+                "file": "Devlog 20 Notes.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-trello",
-              "title": "Beta D"
+              "icon": "lucide-file",
+              "title": "Devlog 20 Notes"
             }
           }
         ]
@@ -159,8 +161,9 @@
   },
   "active": "f9ea6fe717c3dc6a",
   "lastOpenFiles": [
-    "Design/New Worldgen.md",
     "Planning/Beta D.md",
+    "Devlog 20 Notes.md",
+    "Design/New Worldgen.md",
     "Planning/Beta C Kanban.md",
     "Planning/Beta B Kanban.md",
     "Planning/Previous/Pre Alpha Kanban.md",
@@ -209,7 +212,6 @@
     "Devlogs/Devlog 19/Script.md",
     "Devlogs/Devlog 19/What is Interesting.md",
     "Devlogs/Devlog 19/Graph.canvas",
-    "Devlogs/Devlog 19/Goals.md",
     "Devlogs/Deblog 20/Outline.canvas"
   ]
 }
