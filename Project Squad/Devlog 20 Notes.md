@@ -43,10 +43,13 @@
 	- Good look into mechanics
 - Twosome Saga: https://youtu.be/PxbvG8UmmYY?si=wgiIIc_fLDhudx3q
 - VHS: https://www.youtube.com/watch?v=-3Z5NBywQEU
+- https://www.youtube.com/watch?v=JPQ2NVwm1Xk
+- https://www.youtube.com/watch?v=7zDHVeZxzXw&t=5s
+- https://www.youtube.com/watch?v=cOyAz4msWiQ
 ## Vibe
-- Retro nostolgia
+- Retro
 - Home made
-- Light and comedic
+- Light hearted
 # Outline
 ## *Worldgen was redone to be a mechanic rather than a container for the mechanics*
 ## Introduction
@@ -85,4 +88,11 @@ First, it's important where I came from before we can appreciate some of the dec
 - work on explanation
 # Outline 2
 ## Introduction
-Worlds don't just have to contain game play. In video games, worlds can be their own game mechanic. Over the last two months I made a new world generator for my game, and I've got some design bits to show you. Be careful, this might get those thinking cogs in your brain spinning.
+*Comedic hook*
+Me working on world generation is like me with an orange juice. Their both like the best things in the world. 
+*Intro*
+Over the last two months I've overhauled the world generator for my bullet hell, 
+*Game Description*
+which is this multiplayer arcade-like where you clear enemy infested rooms with your friends. I've been meaning to redo how the world is generated because me and the playtesters noticed some design issues with the current system.
+
+Let me explain what I mean.
