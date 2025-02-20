@@ -50,6 +50,15 @@
 - Retro
 - Home made
 - Light hearted
+## Songs
+- Boom Bap Flick
+- Easy Shake -> used for drop
+- June
+- Lazy Walk
+- Limousines
+- Next Steps
+- Randy Butternumbs
+- Will 2 Power
 # Outline
 ## *Worldgen was redone to be a mechanic rather than a container for the mechanics*
 ## Introduction
