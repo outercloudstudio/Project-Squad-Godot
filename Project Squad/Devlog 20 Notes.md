@@ -98,10 +98,28 @@ First, it's important where I came from before we can appreciate some of the dec
 # Outline 2
 ## Introduction
 *Comedic hook*
-Me working on world generation is like me with an orange juice. Their both like the best things in the world. 
+Me working on world generation is like me with orange juice. Their both like the best things in the world. 
 *Intro*
-Over the last two months I've overhauled the world generator for my bullet hell, 
+Which is why over the last two months I've overhauled the world generator for my bullet hell, 
 *Game Description*
-which is this multiplayer arcade-like where you clear enemy infested rooms with your friends. I've been meaning to redo how the world is generated because me and the playtesters noticed some design issues with the current system.
+where you clear rooms with your friends. I've been meaning to redo how the world is generated because I've noticed some glaring design issues.
 
-Let me explain what I mean.
+Let me explain.
+
+The old generator was made of rooms that would continue to grow in a line as you progressed. Rooms could turn, but never go down, and never branch with multiple exits. This presented a huge issue that I had not predicted. You might be able to guess at what the problem is. I'll give you a hint: The world was completely linear. Try and guess the issue before I reveal it.
+
+One of the game design techniques I like to use is giving the player ambiguous choices. That's a complicated way of saying here's two options, you don't know which one is better. I like this because there is a certain element of risk, especially if you make one choice riskier but more rewarding. 
+
+Okay, did you guess that the issue was a lack of player choice? This is what I call disregarding the player's agency. Because, the player has no choice in where they go in the world it feels very boring and repetitive, a feeling even echoed by playtesters in the discord.
+
+A simple solution to this problem of player agency that comes to mind, then, is to just add alternate paths. And that's good, but we can do better.
+
+In the new worldgen you'll notice a main path, with smaller branches breaking off to the sides. At the ends of these branches there will be loot like items or trinkets, generally a good reward that an experienced player would want. However, in order to make this choice interesting, and turn this into an ambiguous decision, when taking these paths, the difficulty of future rooms increases. That means more monsters will spawn.
+
+This creates the conundrum: Do I go for the loot, and risk dying along the way and making future rooms harder, or do I play it safe and continue progressing through the level.
+
+This is the type of decision the original worldgen was missing. Without it, the world goes from being a mechanic that players can interact with, to just a container to house gameplay.
+
+Ambiguous choices is how I like to think about it.
+
+Now if you want to playtest everything I just talked about, I'd be happy to send you a beta steam key through the discord. Thank you for watching, make sure to go grab yourself a nice glass of orange juice, and if you ever give me privilege of your audience again, I'll see you in the next one. Bye.
