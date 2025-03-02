@@ -177,3 +177,64 @@ I've done a lot of work on the visuals to spice things up. You'll notice improve
 I've also disabled a few features while I touch them up. You can't access the other locations at the moment because their visuals aren't done. The boss fight has been removed until I implement a better way to end locations. The altar system where you can get new trinkets has been removed as I'm going to be reworking it real soon.
 
 Thanks for watching, go grab a nice cup of orange juice, I'll see you in the next one. Bye.
+# Revision 4
+Procedural Generation. Thank goodness I no longer have to pay my level designer.
+
+*dungeon in wall*
+
+Now I just keep him in the dungeon right here. I just love procedural generation. That's why over the last two months I overhauled world generator for the cooperative bullet hell I'm working on. I've been meaning to redo how the world is generated because I've noticed a few glaring design issues that I want to share with you today, and how I fixed them.
+
+Let me explain.
+
+*movie theatre zoome out bit*
+
+This is the old world generator. It's made of rooms that grow in a line as you progress. Rooms can turn but never branch with multiple exits, and as you can imagine, this turned out to be quite a design flaw. Some of the playtesters even called it boring. Well, they used to be playtesters.
+
+*show graves*
+
+One of the game design techniques I like to use is giving the player ambiguous choices. That's just a complicated way of saying here's two options, and you don't know which one is better. Imagine you can choose between fighting a dragon with a million dollars or a dancing baby with ten dollars.
+
+*show dragon and baby*
+
+One choice is way more riskier, but the reward is also way larger.
+
+*shoot dragon and collect money*
+
+I like this because there is an element of risk. More advanced players can optionally take the difficult route for the greater reward, while newer players don't have to fight the dragon. Not only is this way more interesting than just one choice, but it caters to both beginners and advanced players. This technique is so broken, it's banned in competitive game development.
+
+Diagetic UI??!
+*me rages and punches screen*
+
+So many great games use this technique, and I absolutely love it when they do. In blood thief there are alternate routes that are harder to pull off but faster. In Risk of Rain, You can choose to fight double the bosses for double to loot. In Spelunky, you can choose the rob the shopkeep for his items, but he'll hunt you down. So many games like to do this because it rewards experienced players with a greater challenge without making it harder for less experienced players. Heck, even Nintendo has been doing this in the Mario games for years, through its optional star coins. If you keep an eye out for it, you'll notice this type of design everywhere.
+
+The question still remains, how can this be incorporated into a procedurally generated world? Here's an idea: We can add branches off of the main path with extra loot at the end, but then make more enemies spawn when you take these paths.
+
+This creates the conundrum: Do I go for the loot, and risk dying along the way and making future rooms harder, or do I play it safe and continue progressing through the level.
+
+*show two paths, in castle, one looks dangerous*
+
+But is this interesting? Let's ask the experts,
+
+*me but fancy sips cup*
+
+yes
+
+*zoom out through retro monitor*
+
+Ambiguous choices is how I like to think about it.
+
+Now if you want to playtest everything I just talked about, I'd be happy to send you a beta steam key through the discord. 
+
+But before I end the video, I want to give an update on some of the other changes I've made and why I've made them:
+
+*zoom back in*
+
+The bow's range was heavily nerfed, so that you can no longer cheese rooms by hitting enemies that are outside of your view.
+
+A new enemy called the wood spirit was added to the enemy pool. This is experimenting with adding more ranged enemies in the game.
+
+I've done a lot of work on the visuals to spice things up. You'll notice improved grass, waving animations, and new decorations around the borders of rooms. Let me know what you think. I'm hoping that continuing to make the game look better will help more people get interested.
+
+I've also disabled a few features while I touch them up. You can't access the other locations at the moment because their visuals aren't done. The boss fight has been removed until I implement a better way to end locations. The altar system where you can get new trinkets has been removed as I'm going to be reworking it real soon.
+
+That's everything! Thanks for watching, go grab a nice cup of orange juice, and I'll see you in the next one. Bye.

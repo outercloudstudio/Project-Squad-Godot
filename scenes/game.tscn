@@ -87,11 +87,11 @@ z_index = 9
 position = Vector2(-185, -205)
 rotation = -0.785398
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_jo6wf")
 texture = ExtResource("10_agqbr")
 lifetime = 30.0
 preprocess = 30.0
 visibility_rect = Rect2(-153.485, 137.97, 278, 284.645)
+process_material = SubResource("ParticleProcessMaterial_jo6wf")
 
 [node name="World" type="Node2D" parent="."]
 y_sort_enabled = true
